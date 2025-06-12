@@ -1,7 +1,7 @@
 hello Admin how are you
 
 @extends('frontend.layout.main')
-    @section('main-container')  
+ @section('main-container')  
 <!-- header end -->
 
 
@@ -12,9 +12,11 @@ hello Admin how are you
             <nav class="theme-breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item">
-                        <a href="index-2.html">Home</a>
+                        <li ><a href="https://vidhyasagarfoundation.intouchsoftwaresolution.com/">vidhyasagarfoundation.intouchsoftwaresolution.com</a></li>
+{{-- 
+                        <a href="index-2.html">Home</a> --}}
                     </li>
-                    <li class="breadcrumb-item active">Dashboard</li>
+                    {{-- <li class="breadcrumb-item active">Dashboard</li> --}}
                 </ol>
             </nav>
         </div>
@@ -52,11 +54,9 @@ hello Admin how are you
                         <div class="faq-tab">
                             <ul id="pills-tab" role="tablist" class="nav nav-tabs">
                                 <li role="presentation" class="nav-item">
-                                   <a href="{{url('/admindashboard')}}"> <button class="nav-link active" id="info-tab" data-bs-toggle="tab"
-                                        data-bs-target="#info-tab-pane" type="button" role="tab">
-                                        <i class="ri-home-line"></i> Admin dashboard
-                                    </button></a>
-                                </li>
+                                    <button class="nav-link active" id="info-tab" data-bs-toggle="tab" data-bs-target="#info-tab-pane" type="button" role="tab" fdprocessedid="bm476v" aria-selected="true">
+                                        <i class="ri-home-line"></i>  Admin dashboard
+                                    </button>
                                 <li role="presentation" class="nav-item">
                                     <button class="nav-link" id="notification-tab" data-bs-toggle="tab"
                                         data-bs-target="#notification-tab-pane" type="button" role="tab">
@@ -73,12 +73,11 @@ Add Product
 
 </li>
 <li role="presentation" class="nav-item">
-                                 <a href="{{url('/manageproduct')}}"> <button class="nav-link" id="bank-details-tab" data-bs-toggle="tab"
-        data-bs-target="#bank-details-tab-pane" type="button" role="tab">
-        <i class="fa-solid fa-box"></i>
-Manage Product
-    </button></a>
-
+                                 <a href="{{url('/manageproduct')}}"> <li role="presentation" class="nav-item"> <button class="nav-link" id="manage-product-tab" data-bs-toggle="tab"
+                                    data-bs-target="#manage-product-tab-pane" type="button" role="tab">
+                                    <i class="fa-solid fa-box"></i>
+                            Manage Product
+                                </button></a>
 </li>
 <li role="presentation" class="nav-item">
 <a href="{{url('/managecustomer')}}"><button class="nav-link" id="manage-customer-tab" data-bs-toggle="tab"
@@ -207,7 +206,7 @@ Manage Product
                         <div class="tab-pane fade show active" id="info-tab-pane" role="tabpanel">
                             <div class="counter-section">
                                 <div class="welcome-msg">
-                                    <h4>Hello, MARK JECNO !</h4>
+                                    <h4>Hello ,{{Auth::user()->name}}</h4>
                                     <p>From your My Account Dashboard you have the ability to view a snapshot of your
                                         recent account activity and update your account information. Select a link below
                                         to view or edit information.</p>
@@ -250,14 +249,13 @@ Manage Product
                                             <div class="box">
                                                 <ul class="box-content">
                                                     <li class="w-100">
-                                                        <h6>Full Name: John Due</h6>
+                                                        <h6>Full Name: {{Auth::user()->name}}</h6>
                                                     </li>
                                                     <li class="w-100">
-                                                        <h6>Phone: +1 65558845</h6>
+                                                        <h6>Phone:{{Auth::user()->phonenumber}}</h6>
                                                     </li>
                                                     <li class="w-100">
-                                                        <h6>Address: 26, Starts Hollow
-                                                            Colony Denver, Colorado, United States 80014</h6>
+                                                        <h6>{{Auth::user()->adderess}}</h6>
                                                     </li>
                                                 </ul>
                                             </div>
@@ -269,7 +267,7 @@ Manage Product
                                         </div>
                                         <div class="row">
                                             <div class="col-sm-6">
-                                                <h6>Email : john.customer@example.com</h6><a href="#edit-profile"
+                                                <h6>Email :{{Auth::user()->email}} </h6><a href="#edit-profile"
                                                     data-bs-toggle="modal">Edit</a>
                                             </div>
                                             <div class="col-sm-6">

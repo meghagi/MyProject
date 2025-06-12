@@ -8,7 +8,8 @@
             <nav class="theme-breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item">
-                        <a href="{{url('/home')}}">Home</a>
+                        <li ><a href="https://vidhyasagarfoundation.intouchsoftwaresolution.com/">vidhyasagarfoundation.intouchsoftwaresolution.com</a></li>
+
                     </li>
                     <li class="breadcrumb-item active">
                     <a href="{{ route('register') }}"></a>

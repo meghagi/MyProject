@@ -3,6 +3,30 @@
     @extends('frontend.layout.main')
     @section('main-container')  
     <!-- Home slider -->
+
+    <div class="container">
+        <h1>Our Products</h1>
+        <div class="row">
+            @foreach($products as $product)
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="{{ asset('uploads/' . $product->file1) }}" class="card-img-top" alt="{{ $product->product_name }}">
+                    <div class="card-body">
+                        <a class="product-title" href="{{Route('product-page(accordian)',['id'=>$product->id])}}}}" title="{{ $product->product_name }}">
+
+                        <h5 class="card-title" style="color:black;" >{{ $product->product_name }}</h5>
+                        </a>
+                        <p class="card-text">{{ $product->description }}</p>
+                        <p class="card-text"><strong>Price:</strong> ₹{{ $product->price }}</p>
+                        <a href="{{ Route('addtocart1',['id'=>$product->id,'name'=>$product->product_names])}}"> 
+                            <button class="btn btn-animation btn-solid hover-solid scroll-button" >AddtoCart</button></a>
+                    </div>
+                </div>
+            </div>
+            @endforeach
+        </div>
+    </div>
+    
     <section class="p-0">
         <div class="slide-1 home-slider">
             @foreach ($products as $product)
@@ -51,6 +75,7 @@
             </div> --}}
         </div>
     </section>
+   
     
     <!-- Home slider end -->
 
@@ -93,7 +118,7 @@
     <!-- Paragraph-->
     <div class="title1 section-t-space">
         <h4>special offer</h4>
-        <h2 class="title-inner1">Latest Drops</h2>
+        <h2 class="title-inner1">Office Stationary</h2>
     </div>
     <div class="container">
         <div class="row">
@@ -116,7 +141,7 @@
                         <div class="overflow-hidden">
                             <div class="img-wrapper">
                                 <div class="ribbon"><span>Exclusive</span></div>
-                                <a href="{{url('/product-page(4-image)')}}" class="collection-banner">
+                                <a href="{{url('/stationary')}}" class="collection-banner">
                                     <img src="{{ asset('uploads/img5.jpeg' ) }}"
                                         class="img-fluid blur-up lazyload" alt="">
                                 </a>
@@ -140,7 +165,7 @@
                             <div class="product-detail">
                                 <div>
                                     <div class="brand-w-color">
-                                        <a class="product-title" href="#">
+                                        <a class="product-title" href="{{url('/stationary')}}">
                                             Stationary
                                         </a>
                                         <div class="color-panel">
@@ -153,9 +178,36 @@
                                         </div>
                                     </div>
                                     <h6>Stationary Items</h6>
-                                    <h4 class="price">$ 2.79<del> $3.00 </del><span class="discounted-price"> 7% Off
+                                    <h4 class="price">
+                                        ₹ 50<del> $3.00 </del><span class="discounted-price"> 7% Off
                                         </span>
                                     </h4>
+                                    {{-- <h6>Stationary Items</h6>
+@foreach ($products5 as $product)
+    <h4 class="price">
+        ₹ {{$product->price }}
+        <del>₹ {{$product->original_price }}</del>
+        <span class="discounted-price">
+            {{$product->discount }}% Off
+        </span>
+    </h4>
+@endforeach --}}
+
+@if (isset($products5) && !$products5->isEmpty())
+    @foreach ($products5 as $product)
+        <h4 class="price">
+            ₹ {{ $product->price }}
+            <del>₹ {{ $product->original_price }}</del>
+            <span class="discounted-price">
+                {{ $product->discount }}% Off
+            </span>
+        </h4>
+    @endforeach
+@else
+    <p>No products available.</p>
+@endif
+
+
                                 </div>
                                 <ul class="offer-panel">
                                     <li><span class="offer-icon"><i class="ri-discount-percent-fill"></i></span>
@@ -202,7 +254,7 @@
 
                                     </div>
                                     <h6>Books</h6>
-                                    <h4 class="price">$ 3.45 </h4>
+                                    <h4 class="price">₹ 80 </h4>
                                 </div>
                                 <ul class="offer-panel">
                                     <li><span class="offer-icon"><i class="ri-discount-percent-fill"></i></span>
@@ -256,7 +308,7 @@
                                         </div>
                                     </div>
                                     <h6>Versatile Shacket</h6>
-                                    <h4 class="price">$ 3.12</h4>
+                                    <h4 class="price">₹ 80</h4>
                                 </div>
                                 <ul class="offer-panel">
                                     <li><span class="offer-icon"><i class="ri-discount-percent-fill"></i></span>
@@ -270,6 +322,30 @@
                         </div>
                     </div>
                 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                
                 <div>
                     <div class="basic-product theme-product-1">
                         <div class="overflow-hidden">
@@ -304,7 +380,7 @@
 
                                     </div>
                                     <h6>pencil</h6>
-                                    <h4 class="price">$ 5.19<del> $6.00 </del><span class="discounted-price"> 8% Off
+                                    <h4 class="price">₹ 150<del> $6.00 </del><span class="discounted-price"> 8% Off
                                         </span>
                                     </h4>
                                 </div>
@@ -323,6 +399,95 @@
             </div>
         </div>
     </section>
+
+    <div class="title1 section-t-space">
+        <h4>special offer</h4>
+        <h2 class="title-inner1">Office Stationary</h2>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 offset-lg-3">
+                <div class="product-para">
+                    <p class="text-center">Looking for the latest trends in clothing, shoes, and accessories? Welcome to
+                        our 'Latest Drops' edit, bringing you all the latest styles from all your fave brands.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Paragraph end -->
+    
+    <!-- Product slider -->
+    <section class="section-b-space pt-0 ratio_asos">
+        <div class="container">
+            <div class="g-3 g-md-4 row row-cols-2 row-cols-md-3 row-cols-xl-4">
+                @foreach ($products as $product1 )
+                    <div>
+                        <div class="basic-product theme-product-1">
+                            <div class="overflow-hidden">
+                                <div class="img-wrapper">
+                                    <div class="ribbon"><span>Exclusive</span></div>
+                        
+                                    {{-- <a href="{{ route('product.show', ['id' => $product1->id]) }}"> --}}
+                                        {{-- <img src="{{ asset('uploads/' . $product->file1) }}" alt="{{ $product->name }}"> --}}
+                                        <img src="{{ asset('uploads/' . $product1->file1) }}" alt="{{ $product1->product_name }}">
+
+                                        <h3>{{ $product1->name }}</h3>
+                                    </a>
+                                   
+                            
+                                    <div class="rating-label"><i class="ri-star-fill"></i><span>4.5</span></div>
+                                    <div class="cart-info">
+                                        <a href="#!" title="Add to Wishlist" class="wishlist-icon">
+                                            <i class="ri-heart-line"></i>
+                                        </a>
+                                        <button data-bs-toggle="modal" data-bs-target="#addtocart" title="Add to cart">
+                                            <i class="ri-shopping-cart-line"></i>
+                                        </button>
+                                        <a href="#!" data-bs-toggle="modal" data-bs-target="#quickView" title="Quick View">
+                                            <i class="ri-eye-line"></i>
+                                        </a>
+                                        <a href="compare.html" title="Compare">
+                                            <i class="ri-loop-left-line"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="product-detail">
+                                    <div>
+                                        <div class="brand-w-color">
+                                            <a class="product-title" href="{{ Route('product-page(accordian)',['id'=>$product1->id,'name'=>$product1->product_name])}} }}" title="{{ $product1->product_name }}">
+                                                <h3>{{ $product1->product_name }}</h3>
+                                            </a>
+                                            
+                                            <div class="color-panel">
+                                                <ul>
+                                                    <li style="background-color: papayawhip;"></li>
+                                                    <li style="background-color: burlywood;"></li>
+                                                    <li style="background-color: gainsboro;"></li>
+                                                </ul>
+                                                <span>+2</span>
+                                            </div>
+                                        </div>
+                                        <h6>Stationary Items</h6>
+                                        <h4 class="price">₹ {{ $product1->price }}<del>$3.00</del> <span class="discounted-price">7% Off</span></h4>
+                                    </div>
+                                    <ul class="offer-panel">
+                                        <li><span class="offer-icon"><i class="ri-discount-percent-fill"></i></span> Limited Time Offer: 5% off</li>
+                                    </ul>
+                                    <a href="{{ Route('addtocart1',['id'=>$product1->id,'name'=>$product1->product_names])}}"> 
+                                        <button class="btn btn-animation btn-solid hover-solid scroll-button"
+                                        type="button"><i class="ri-shopping-cart-line me-1"></i> Add To Cart</button>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+    
+                
+            </div>
+        </div>
+    </section>
+       
     <!-- Product slider end -->
 
 
@@ -350,885 +515,35 @@
                             <li><a href="tab-5.html">Pencils</a></li>
                             <li><a href="tab-6.html">Rubber</a></li>
                         </ul>
-                        <div class="tab-content-cls">
-                            <div id="tab-4" class="tab-content active default">
-                                <div class="g-3 g-md-4 row row-cols-2 row-cols-md-3 row-cols-xl-4">
-                                    <div>
-                                        <div class="basic-product theme-product-1">
-                                            <div class="overflow-hidden">
-                                                <div class="img-wrapper">
-                                                    <a href="{{url('/product-page(image-swatch)')}}">
-                                                        <img src="{{url( asset('uploads/gelpens.jpg' ))}}">
-
-                                                    </a>
-                                                    <div class="rating-label"><i
-                                                            class="ri-star-fill"></i><span>4.5</span>
-                                                    </div>
-                                                    <div class="cart-info">
-                                                        <a href="#!" title="Add to Wishlist" class="wishlist-icon">
-                                                            <i class="ri-heart-line"></i>
-                                                        </a>
-                                                        <button data-bs-toggle="modal" data-bs-target="#addtocart"
-                                                            title="Add to cart">
-                                                            <i class="ri-shopping-cart-line"></i>
-                                                        </button>
-                                                        <a href="#!" data-bs-toggle="modal" data-bs-target="#quickView"
-                                                            title="Quick View">
-                                                            <i class="ri-eye-line"></i>
-                                                        </a>
-                                                        <a href="compare.html" title="Compare">
-                                                            <i class="ri-loop-left-line"></i>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                                <div class="product-detail">
-                                                    <div>
-                                                        <div class="brand-w-color">
-                                                            <a class="product-title"
-                                                                href="">
-                                                                Gelspens
-                                                            </a>
-                                                            <div class="color-panel">
-                                                                <ul>
-                                                                    <li style="background-color: papayawhip;"></li>
-                                                                    <li style="background-color: burlywood;"></li>
-                                                                    <li style="background-color: gainsboro;"></li>
-                                                                </ul>
-                                                                <span>+2</span>
-                                                            </div>
-                                                        </div>
-                                                        <h6>Pens use for to write future</h6>
-                                                        <h4 class="price">$ 4.34<del> $5.00 </del><span
-                                                                class="discounted-price"> 5% Off
-                                                            </span>
-                                                        </h4>
-                                                    </div>
-                                                    <ul class="offer-panel">
-                                                        <li>
-                                                            <span class="offer-icon">
-                                                                <i class="ri-discount-percent-fill"></i>
-                                                            </span>
-                                                            Limited Time Offer: 5% off
-                                                        </li>
-                                                        <li>
-                                                            <span class="offer-icon">
-                                                                <i class="ri-discount-percent-fill"></i>
-                                                            </span>
-                                                            Limited Time Offer: 5% off
-                                                        </li>
-                                                        <li>
-                                                            <span class="offer-icon">
-                                                                <i class="ri-discount-percent-fill"></i>
-                                                            </span>
-                                                            Limited Time Offer: 5% off
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="basic-product theme-product-1">
-                                            <div class="overflow-hidden">
-                                                <div class="img-wrapper">
-                                                    <a href="{{url('/rubber')}}">
-                                                        <img src="{{url( asset('uploads/rubber.jpg' ))}}">
-                                                            
-                                                    <div class="rating-label"><i class="ri-star-s-fill"></i>
-                                                        <span>4.5</span>
-                                                    </div>
-                                                    <div class="cart-info">
-                                                        <a href="#!" title="Add to Wishlist" class="wishlist-icon">
-                                                            <i class="ri-heart-line"></i>
-                                                        </a>
-                                                        <button data-bs-toggle="modal" data-bs-target="#addtocart"
-                                                            title="Add to cart">
-                                                            <i class="ri-shopping-cart-line"></i>
-                                                        </button>
-                                                        <a href="#!" data-bs-toggle="modal" data-bs-target="#quickView"
-                                                            title="Quick View">
-                                                            <i class="ri-eye-line"></i>
-                                                        </a>
-                                                        <a href="compare.html" title="Compare">
-                                                            <i class="ri-loop-left-line"></i>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                                <div class="product-detail">
-                                                    <div>
-                                                        <div class="brand-w-color">
-                                                            <a class="product-title"
-                                                                href="product-page(accordian).html">
-                                                                Rubber for rubb
-                                                            </a>
-                                                            <div class="color-panel">
-                                                                <ul>
-                                                                    <li style="background-color: papayawhip;"></li>
-                                                                    <li style="background-color: burlywood;"></li>
-                                                                    <li style="background-color: gainsboro;"></li>
-                                                                </ul>
-                                                                <span>+2</span>
-                                                            </div>
-                                                        </div>
-                                                        <h6></h6>
-                                                        <h4 class="price">$ 3.40 </h4>
-                                                    </div>
-                                                    <ul class="offer-panel">
-                                                        <li>
-                                                            <span class="offer-icon">
-                                                                <i class="ri-discount-percent-fill"></i>
-                                                            </span>
-                                                            Limited Time Offer: 5% off
-                                                        </li>
-                                                        <li>
-                                                            <span class="offer-icon">
-                                                                <i class="ri-discount-percent-fill"></i>
-                                                            </span>
-                                                            Limited Time Offer: 5% off
-                                                        </li>
-                                                        <li>
-                                                            <span class="offer-icon">
-                                                                <i class="ri-discount-percent-fill"></i>
-                                                            </span>
-                                                            Limited Time Offer: 5% off
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="basic-product theme-product-1">
-                                            <div class="overflow-hidden">
-                                                <div class="img-wrapper">
-                                                    <a href="{{url('/shoppner')}}">
-                                                        {{-- @foreach($product as $products) --}}
-                                                        <img src="{{ asset('uploads/shoppner.jpeg' ) }}"
-                                                            class="img-fluid blur-up lazyload" alt="">
-                                                            {{-- @endforeach</a> --}}
-                                                    <div class="rating-label"><i class="ri-star-s-fill"></i>
-                                                        <span>4.5</span>
-                                                    </div>
-                                                    <div class="cart-info">
-                                                        <a href="#!" title="Add to Wishlist" class="wishlist-icon">
-                                                            <i class="ri-heart-line"></i>
-                                                        </a>
-                                                        <button data-bs-toggle="modal" data-bs-target="#addtocart"
-                                                            title="Add to cart">
-                                                            <i class="ri-shopping-cart-line"></i>
-                                                        </button>
-                                                        <a href="#!" data-bs-toggle="modal" data-bs-target="#quickView"
-                                                            title="Quick View">
-                                                            <i class="ri-eye-line"></i>
-                                                        </a>
-                                                        <a href="compare.html" title="Compare">
-                                                            <i class="ri-loop-left-line"></i>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                                <div class="product-detail">
-                                                    <div>
-                                                        <div class="brand-w-color">
-                                                            <a class="product-title"
-                                                                href="">Shoppner</a>
-                                                            <div class="color-panel">
-                                                                <ul>
-                                                                    <li style="background-color: papayawhip;"></li>
-                                                                    <li style="background-color: burlywood;"></li>
-                                                                    <li style="background-color: gainsboro;"></li>
-                                                                </ul>
-                                                                <span>+2</span>
-                                                            </div>
-                                                        </div>
-                                                        <h6> Shoppner for shop pencil</h6>
-                                                        <del class="price">$ 2.10</del>
-                                                    </div>
-                                                    <ul class="offer-panel">
-                                                        <li>
-                                                            <span class="offer-icon">
-                                                                <i class="ri-discount-percent-fill"></i>
-                                                            </span>
-                                                            Limited Time Offer: 5% off
-                                                        </li>
-                                                        <li>
-                                                            <span class="offer-icon">
-                                                                <i class="ri-discount-percent-fill"></i>
-                                                            </span>
-                                                            Limited Time Offer: 5% off
-                                                        </li>
-                                                        <li>
-                                                            <span class="offer-icon">
-                                                                <i class="ri-discount-percent-fill"></i>
-                                                            </span>
-                                                            Limited Time Offer: 5% off
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="basic-product theme-product-1">
-                                            <div class="overflow-hidden">
-                                                <div class="img-wrapper">
-                                                    <a href=""><img
-                                                            src="{{ asset('uploads/1.png' ) }}"
-                                                            class="img-fluid blur-up lazyload" alt=""></a>
-                                                    <div class="rating-label"><i class="ri-star-s-fill"></i>
-                                                        <span>4.5</span>
-                                                    </div>
-                                                    <div class="cart-info">
-                                                        <a href="#!" title="Add to Wishlist" class="wishlist-icon">
-                                                            <i class="ri-heart-line"></i>
-                                                        </a>
-                                                        <button data-bs-toggle="modal" data-bs-target="#addtocart"
-                                                            title="Add to cart">
-                                                            <i class="ri-shopping-cart-line"></i>
-                                                        </button>
-                                                        <a href="#!" data-bs-toggle="modal" data-bs-target="#quickView"
-                                                            title="Quick View">
-                                                            <i class="ri-eye-line"></i>
-                                                        </a>
-                                                        <a href="compare.html" title="Compare">
-                                                            <i class="ri-loop-left-line"></i>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                                <div class="product-detail">
-                                                    <div>
-                                                        <div class="brand-w-color">
-                                                            <a class="product-title"
-                                                                href="product-page(accordian).html">
-                                                            
-                                                            </a>
-                                                            <div class="color-panel">
-                                                                <ul>
-                                                                    <li style="background-color: papayawhip;"></li>
-                                                                    <li style="background-color: burlywood;"></li>
-                                                                    <li style="background-color: gainsboro;"></li>
-                                                                </ul>
-                                                                <span>+2</span>
-                                                            </div>
-                                                        </div>
-                                                        <h6>Tie and Dye Chiffon Top</h6>
-                                                        <h4 class="price">$ 2.79<del> $3.00 </del><span
-                                                                class="discounted-price"> 7% Off
-                                                            </span>
-                                                        </h4>
-                                                    </div>
-                                                    <ul class="offer-panel">
-                                                        <li>
-                                                            <span class="offer-icon">
-                                                                <i class="ri-discount-percent-fill"></i>
-                                                            </span>
-                                                            Limited Time Offer: 5% off
-                                                        </li>
-                                                        <li>
-                                                            <span class="offer-icon">
-                                                                <i class="ri-discount-percent-fill"></i>
-                                                            </span>
-                                                            Limited Time Offer: 5% off
-                                                        </li>
-                                                        <li>
-                                                            <span class="offer-icon">
-                                                                <i class="ri-discount-percent-fill"></i>
-                                                            </span>
-                                                            Limited Time Offer: 5% off
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
+    
+                        <div class="row">
+                            <div class="row">
+                                @foreach($products->take(3) as $product)
+                                <div class="col-md-4 mb-4">
+                                    <div class="card">
+                                        <img src="{{ asset('uploads/' . $product->file1) }}" class="card-img-top" alt="{{ $product->product_name }}">
+                                        <div class="card-body">
+                                            <a class="product-title" href="{{ route('product-page(accordian)', ['id' => $product->id]) }}" title="{{ $product->product_name }}">
+                                                <h5 class="card-title" style="color:black;">{{ $product->product_name }}</h5>
+                                            </a>
+                                            <p class="card-text">{{ $product->description }}</p>
+                                            <p class="card-text"><strong>Price:</strong> ₹{{ $product->price }}</p>
+                                            <a href="{{ route('addtocart1', ['id' => $product->id, 'name' => $product->product_name]) }}">
+                                                <button class="btn btn-animation btn-solid hover-solid scroll-button">Add to Cart</button>
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
+                                @endforeach
                             </div>
-                            <div id="tab-5" class="tab-content">
-                                <div class="g-3 g-md-4 row row-cols-2 row-cols-md-3 row-cols-xl-4">
-                                    <div>
-                                        <div class="basic-product theme-product-1">
-                                            <div class="overflow-hidden">
-                                                <div class="img-wrapper">
-                                                    <a href="">
-                                                        <img src="{{ asset('uploads/2.jpg' ) }}"
-                                                            class="img-fluid blur-up lazyload" alt="">
-                                                    </a>
-                                                    <div class="rating-label"><i
-                                                            class="ri-star-fill"></i><span>4.5</span>
-                                                    </div>
-                                                    <div class="cart-info">
-                                                        <a href="#!" title="Add to Wishlist" class="wishlist-icon">
-                                                            <i class="ri-heart-line"></i>
-                                                        </a>
-                                                        <button data-bs-toggle="modal" data-bs-target="#addtocart"
-                                                            title="Add to cart">
-                                                            <i class="ri-shopping-cart-line"></i>
-                                                        </button>
-                                                        <a href="#!" data-bs-toggle="modal" data-bs-target="#quickView"
-                                                            title="Quick View">
-                                                            <i class="ri-eye-line"></i>
-                                                        </a>
-                                                        <a href="compare.html" title="Compare">
-                                                            <i class="ri-loop-left-line"></i>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                                <div class="product-detail">
-                                                    <div>
-                                                        <div class="brand-w-color">
-                                                            <a class="product-title"
-                                                                href="product-page(accordian).html">
-                                                                Writing
-                                                            </a>
-                                                            <div class="color-panel">
-                                                                <ul>
-                                                                    <li style="background-color: papayawhip;"></li>
-                                                                    <li style="background-color: burlywood;"></li>
-                                                                    <li style="background-color: gainsboro;"></li>
-                                                                </ul>
-                                                                <span>+2</span>
-                                                            </div>
-                                                        </div>
-                                                        <h6>Cami Tank Top</h6>
-                                                        <h4 class="price">$ 1.80<del> $2.60 </del><span
-                                                                class="discounted-price"> 4% Off
-                                                            </span>
-                                                        </h4>
-                                                    </div>
-                                                    <ul class="offer-panel">
-                                                        <li>
-                                                            <span class="offer-icon">
-                                                                <i class="ri-discount-percent-fill"></i>
-                                                            </span>
-                                                            Limited Time Offer: 5% off
-                                                        </li>
-                                                        <li>
-                                                            <span class="offer-icon">
-                                                                <i class="ri-discount-percent-fill"></i>
-                                                            </span>
-                                                            Limited Time Offer: 5% off
-                                                        </li>
-                                                        <li>
-                                                            <span class="offer-icon">
-                                                                <i class="ri-discount-percent-fill"></i>
-                                                            </span>
-                                                            Limited Time Offer: 5% off
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="basic-product theme-product-1">
-                                            <div class="overflow-hidden">
-                                                <div class="img-wrapper">
-                                                    <a href="#"><img
-                                                            src="{{ asset('uploads/3.jpg' ) }}"
-                                                            class="img-fluid blur-up lazyload" alt=""></a>
-                                                    <div class="rating-label"><i class="ri-star-s-fill"></i>
-                                                        <span>4.5</span>
-                                                    </div>
-                                                    <div class="cart-info">
-                                                        <a href="#!" title="Add to Wishlist" class="wishlist-icon">
-                                                            <i class="ri-heart-line"></i>
-                                                        </a>
-                                                        <button data-bs-toggle="modal" data-bs-target="#addtocart"
-                                                            title="Add to cart">
-                                                            <i class="ri-shopping-cart-line"></i>
-                                                        </button>
-                                                        <a href="#!" data-bs-toggle="modal" data-bs-target="#quickView"
-                                                            title="Quick View">
-                                                            <i class="ri-eye-line"></i>
-                                                        </a>
-                                                        <a href="compare.html" title="Compare">
-                                                            <i class="ri-loop-left-line"></i>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                                <div class="product-detail">
-                                                    <div>
-                                                        <div class="brand-w-color">
-                                                            <a class="product-title"
-                                                                href="product-page(accordian).html">
-                                                                Glamour Gaze
-                                                            </a>
-                                                            <div class="color-panel">
-                                                                <ul>
-                                                                    <li style="background-color: papayawhip;"></li>
-                                                                    <li style="background-color: burlywood;"></li>
-                                                                    <li style="background-color: gainsboro;"></li>
-                                                                </ul>
-                                                                <span>+2</span>
-                                                            </div>
-                                                        </div>
-                                                        <h6>Scarlet Stunner</h6>
-                                                        <h4 class="price">$ 1.50 </h4>
-                                                    </div>
-                                                    <ul class="offer-panel">
-                                                        <li>
-                                                            <span class="offer-icon">
-                                                                <i class="ri-discount-percent-fill"></i>
-                                                            </span>
-                                                            Limited Time Offer: 5% off
-                                                        </li>
-                                                        <li>
-                                                            <span class="offer-icon">
-                                                                <i class="ri-discount-percent-fill"></i>
-                                                            </span>
-                                                            Limited Time Offer: 5% off
-                                                        </li>
-                                                        <li>
-                                                            <span class="offer-icon">
-                                                                <i class="ri-discount-percent-fill"></i>
-                                                            </span>
-                                                            Limited Time Offer: 5% off
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="basic-product theme-product-1">
-                                            <div class="overflow-hidden">
-                                                <div class="img-wrapper">
-                                                    <a href=""><img
-                                                            src="{{ asset('uploads/4.jpg' ) }}"
-                                                            class="img-fluid blur-up lazyload" alt=""></a>
-                                                    <div class="rating-label"><i class="ri-star-s-fill"></i>
-                                                        <span>4.5</span>
-                                                    </div>
-                                                    <div class="cart-info">
-                                                        <a href="#!" title="Add to Wishlist" class="wishlist-icon">
-                                                            <i class="ri-heart-line"></i>
-                                                        </a>
-                                                        <button data-bs-toggle="modal" data-bs-target="#addtocart"
-                                                            title="Add to cart">
-                                                            <i class="ri-shopping-cart-line"></i>
-                                                        </button>
-                                                        <a href="#!" data-bs-toggle="modal" data-bs-target="#quickView"
-                                                            title="Quick View">
-                                                            <i class="ri-eye-line"></i>
-                                                        </a>
-                                                        <a href="compare.html" title="Compare">
-                                                            <i class="ri-loop-left-line"></i>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                                <div class="product-detail">
-                                                    <div>
-                                                        <div class="brand-w-color">
-                                                            <a class="product-title"
-                                                                href="product-page(accordian).html">
-                                                                VogueVista
-                                                            </a>
-                                                            <div class="color-panel">
-                                                                <ul>
-                                                                    <li style="background-color: papayawhip;"></li>
-                                                                    <li style="background-color: burlywood;"></li>
-                                                                    <li style="background-color: gainsboro;"></li>
-                                                                </ul>
-                                                                <span>+2</span>
-                                                            </div>
-                                                        </div>
-                                                        <h6>Chic Crop Top</h6>
-                                                        <h4 class="price">$ 5.60<del> $6.80 </del><span
-                                                                class="discounted-price"> 5% Off
-                                                            </span>
-                                                        </h4>
-                                                    </div>
-                                                    <ul class="offer-panel">
-                                                        <li>
-                                                            <span class="offer-icon">
-                                                                <i class="ri-discount-percent-fill"></i>
-                                                            </span>
-                                                            Limited Time Offer: 5% off
-                                                        </li>
-                                                        <li>
-                                                            <span class="offer-icon">
-                                                                <i class="ri-discount-percent-fill"></i>
-                                                            </span>
-                                                            Limited Time Offer: 5% off
-                                                        </li>
-                                                        <li>
-                                                            <span class="offer-icon">
-                                                                <i class="ri-discount-percent-fill"></i>
-                                                            </span>
-                                                            Limited Time Offer: 5% off
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="basic-product theme-product-1">
-                                            <div class="overflow-hidden">
-                                                <div class="img-wrapper">
-                                                    <a href="product-page(accordian).html"><img
-                                                            src="../assets/images/fashion-1/product/12.jpg"
-                                                            class="img-fluid blur-up lazyload" alt=""></a>
-                                                    <div class="rating-label"><i class="ri-star-s-fill"></i>
-                                                        <span>4.5</span>
-                                                    </div>
-                                                    <div class="cart-info">
-                                                        <a href="#!" title="Add to Wishlist" class="wishlist-icon">
-                                                            <i class="ri-heart-line"></i>
-                                                        </a>
-                                                        <button data-bs-toggle="modal" data-bs-target="#addtocart"
-                                                            title="Add to cart">
-                                                            <i class="ri-shopping-cart-line"></i>
-                                                        </button>
-                                                        <a href="#!" data-bs-toggle="modal" data-bs-target="#quickView"
-                                                            title="Quick View">
-                                                            <i class="ri-eye-line"></i>
-                                                        </a>
-                                                        <a href="compare.html" title="Compare">
-                                                            <i class="ri-loop-left-line"></i>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                                <div class="product-detail">
-                                                    <div>
-                                                        <div class="brand-w-color">
-                                                            <a class="product-title"
-                                                                href="product-page(accordian).html">
-                                                                writing
-                                                            </a>
-                                                            <div class="color-panel">
-                                                                <ul>
-                                                                    <li style="background-color: papayawhip;"></li>
-                                                                    <li style="background-color: burlywood;"></li>
-                                                                    <li style="background-color: gainsboro;"></li>
-                                                                </ul>
-                                                                <span>+2</span>
-                                                            </div>
-                                                        </div>
-                                                        <h6>Backless Crop Top</h6>
-                                                        <h4 class="price">$ 3.27 </h4>
-                                                    </div>
-                                                    <ul class="offer-panel">
-                                                        <li>
-                                                            <span class="offer-icon">
-                                                                <i class="ri-discount-percent-fill"></i>
-                                                            </span>
-                                                            Limited Time Offer: 5% off
-                                                        </li>
-                                                        <li>
-                                                            <span class="offer-icon">
-                                                                <i class="ri-discount-percent-fill"></i>
-                                                            </span>
-                                                            Limited Time Offer: 5% off
-                                                        </li>
-                                                        <li>
-                                                            <span class="offer-icon">
-                                                                <i class="ri-discount-percent-fill"></i>
-                                                            </span>
-                                                            Limited Time Offer: 5% off
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div id="tab-6" class="tab-content">
-                                <div class="g-3 g-md-4 row row-cols-2 row-cols-md-3 row-cols-xl-4">
-                                    <div>
-                                        <div class="basic-product theme-product-1">
-                                            <div class="overflow-hidden">
-                                                <div class="img-wrapper">
-                                                    <a href="">
-                                                        <img src="../assets/images/fashion-1/product/13.jpg"
-                                                            class="img-fluid blur-up lazyload" alt="">
-                                                    </a>
-                                                    <div class="rating-label"><i
-                                                            class="ri-star-fill"></i><span>4.5</span>
-                                                    </div>
-                                                    <div class="cart-info">
-                                                        <a href="#!" title="Add to Wishlist" class="wishlist-icon">
-                                                            <i class="ri-heart-line"></i>
-                                                        </a>
-                                                        <button data-bs-toggle="modal" data-bs-target="#addtocart"
-                                                            title="Add to cart">
-                                                            <i class="ri-shopping-cart-line"></i>
-                                                        </button>
-                                                        <a href="#!" data-bs-toggle="modal" data-bs-target="#quickView"
-                                                            title="Quick View">
-                                                            <i class="ri-eye-line"></i>
-                                                        </a>
-                                                        <a href="compare.html" title="Compare">
-                                                            <i class="ri-loop-left-line"></i>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                                <div class="product-detail">
-                                                    <div>
-                                                        <div class="brand-w-color">
-                                                            <a class="product-title"
-                                                                href="product-page(accordian).html">
-                                                                Glamour Gaze
-                                                            </a>
-                                                            <div class="color-panel">
-                                                                <ul>
-                                                                    <li style="background-color: papayawhip;"></li>
-                                                                    <li style="background-color: burlywood;"></li>
-                                                                    <li style="background-color: gainsboro;"></li>
-                                                                </ul>
-                                                                <span>+2</span>
-                                                            </div>
-                                                        </div>
-                                                        <h6>Boyfriend Shirts</h6>
-                                                        <h4 class="price">$ 2.79<del> $3.00 </del><span
-                                                                class="discounted-price"> 7% Off
-                                                            </span>
-                                                        </h4>
-                                                    </div>
-                                                    <ul class="offer-panel">
-                                                        <li>
-                                                            <span class="offer-icon">
-                                                                <i class="ri-discount-percent-fill"></i>
-                                                            </span>
-                                                            Limited Time Offer: 5% off
-                                                        </li>
-                                                        <li>
-                                                            <span class="offer-icon">
-                                                                <i class="ri-discount-percent-fill"></i>
-                                                            </span>
-                                                            Limited Time Offer: 5% off
-                                                        </li>
-                                                        <li>
-                                                            <span class="offer-icon">
-                                                                <i class="ri-discount-percent-fill"></i>
-                                                            </span>
-                                                            Limited Time Offer: 5% off
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="basic-product theme-product-1">
-                                            <div class="overflow-hidden">
-                                                <div class="img-wrapper">
-                                                    <a href="product-page(accordian).html"><img
-                                                            src="../assets/images/fashion-1/product/14.jpg"
-                                                            class="img-fluid blur-up lazyload" alt=""></a>
-                                                    <div class="rating-label"><i class="ri-star-s-fill"></i>
-                                                        <span>4.5</span>
-                                                    </div>
-                                                    <div class="cart-info">
-                                                        <a href="#!" title="Add to Wishlist" class="wishlist-icon">
-                                                            <i class="ri-heart-line"></i>
-                                                        </a>
-                                                        <button data-bs-toggle="modal" data-bs-target="#addtocart"
-                                                            title="Add to cart">
-                                                            <i class="ri-shopping-cart-line"></i>
-                                                        </button>
-                                                        <a href="#!" data-bs-toggle="modal" data-bs-target="#quickView"
-                                                            title="Quick View">
-                                                            <i class="ri-eye-line"></i>
-                                                        </a>
-                                                        <a href="compare.html" title="Compare">
-                                                            <i class="ri-loop-left-line"></i>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                                <div class="product-detail">
-                                                    <div>
-                                                        <div class="brand-w-color">
-                                                            <a class="product-title"
-                                                                href="product-page(accordian).html">
-                                                                Couture Edge
-                                                            </a>
-                                                            <div class="color-panel">
-                                                                <ul>
-                                                                    <li style="background-color: papayawhip;"></li>
-                                                                    <li style="background-color: burlywood;"></li>
-                                                                    <li style="background-color: gainsboro;"></li>
-                                                                </ul>
-                                                                <span>+2</span>
-                                                            </div>
-                                                        </div>
-                                                        <h6>Cozy Sky Hoodie</h6>
-                                                        <h4 class="price">$ 3.15 </h4>
-                                                    </div>
-                                                    <ul class="offer-panel">
-                                                        <li>
-                                                            <span class="offer-icon">
-                                                                <i class="ri-discount-percent-fill"></i>
-                                                            </span>
-                                                            Limited Time Offer: 5% off
-                                                        </li>
-                                                        <li>
-                                                            <span class="offer-icon">
-                                                                <i class="ri-discount-percent-fill"></i>
-                                                            </span>
-                                                            Limited Time Offer: 5% off
-                                                        </li>
-                                                        <li>
-                                                            <span class="offer-icon">
-                                                                <i class="ri-discount-percent-fill"></i>
-                                                            </span>
-                                                            Limited Time Offer: 5% off
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="basic-product theme-product-1">
-                                            <div class="overflow-hidden">
-                                                <div class="img-wrapper">
-                                                    <a href="product-page(accordian).html"><img
-                                                            src="../assets/images/fashion-1/product/15.jpg"
-                                                            class="img-fluid blur-up lazyload" alt=""></a>
-                                                    <div class="rating-label"><i class="ri-star-s-fill"></i>
-                                                        <span>4.5</span>
-                                                    </div>
-                                                    <div class="cart-info">
-                                                        <a href="#!" title="Add to Wishlist" class="wishlist-icon">
-                                                            <i class="ri-heart-line"></i>
-                                                        </a>
-                                                        <button data-bs-toggle="modal" data-bs-target="#addtocart"
-                                                            title="Add to cart">
-                                                            <i class="ri-shopping-cart-line"></i>
-                                                        </button>
-                                                        <a href="#!" data-bs-toggle="modal" data-bs-target="#quickView"
-                                                            title="Quick View">
-                                                            <i class="ri-eye-line"></i>
-                                                        </a>
-                                                        <a href="compare.html" title="Compare">
-                                                            <i class="ri-loop-left-line"></i>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                                <div class="product-detail">
-                                                    <div>
-                                                        <div class="brand-w-color">
-                                                            <a class="product-title"
-                                                                href="product-page(accordian).html">
-                                                         Writing
-                                                            </a>
-                                                            <div class="color-panel">
-                                                                <ul>
-                                                                    <li style="background-color: papayawhip;"></li>
-                                                                    <li style="background-color: burlywood;"></li>
-                                                                    <li style="background-color: gainsboro;"></li>
-                                                                </ul>
-                                                                <span>+2</span>
-                                                            </div>
-                                                        </div>
-                                                        <h6>Classic Jacket</h6>
-                                                        <h4 class="price">$ 3.80 </h4>
-                                                    </div>
-                                                    <ul class="offer-panel">
-                                                        <li>
-                                                            <span class="offer-icon">
-                                                                <i class="ri-discount-percent-fill"></i>
-                                                            </span>
-                                                            Limited Time Offer: 5% off
-                                                        </li>
-                                                        <li>
-                                                            <span class="offer-icon">
-                                                                <i class="ri-discount-percent-fill"></i>
-                                                            </span>
-                                                            Limited Time Offer: 5% off
-                                                        </li>
-                                                        <li>
-                                                            <span class="offer-icon">
-                                                                <i class="ri-discount-percent-fill"></i>
-                                                            </span>
-                                                            Limited Time Offer: 5% off
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="basic-product theme-product-1">
-                                            <div class="overflow-hidden">
-                                                <div class="img-wrapper">
-                                                    <a href="">
-                                                        <img src="../assets/images/fashion-1/product/16.jpg"
-                                                            class="img-fluid blur-up lazyload" alt="">
-                                                    </a>
-                                                    <div class="rating-label"><i class="ri-star-s-fill"></i>
-                                                        <span>4.5</span>
-                                                    </div>
-                                                    <div class="cart-info">
-                                                        <a href="#!" title="Add to Wishlist" class="wishlist-icon">
-                                                            <i class="ri-heart-line"></i>
-                                                        </a>
-                                                        <button data-bs-toggle="modal" data-bs-target="#addtocart"
-                                                            title="Add to cart">
-                                                            <i class="ri-shopping-cart-line"></i>
-                                                        </button>
-                                                        <a href="#!" data-bs-toggle="modal" data-bs-target="#quickView"
-                                                            title="Quick View">
-                                                            <i class="ri-eye-line"></i>
-                                                        </a>
-                                                        <a href="compare.html" title="Compare">
-                                                            <i class="ri-loop-left-line"></i>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                                <div class="product-detail">
-                                                    <div>
-                                                        <div class="brand-w-color">
-                                                            <a class="product-title"
-                                                                href="product-page(accordian).html">
-                                                                Couture Edge
-                                                            </a>
-                                                            <div class="color-panel">
-                                                                <ul>
-                                                                    <li style="background-color: papayawhip;"></li>
-                                                                    <li style="background-color: burlywood;"></li>
-                                                                    <li style="background-color: gainsboro;"></li>
-                                                                </ul>
-                                                                <span>+2</span>
-                                                            </div>
-                                                        </div>
-                                                        <h6>Versatile Shacket</h6>
-                                                        <h4 class="price"> $3.00
-                                                        </h4>
-                                                    </div>
-                                                    <ul class="offer-panel">
-                                                        <li>
-                                                            <span class="offer-icon">
-                                                                <i class="ri-discount-percent-fill"></i>
-                                                            </span>
-                                                            Limited Time Offer: 5% off
-                                                        </li>
-                                                        <li>
-                                                            <span class="offer-icon">
-                                                                <i class="ri-discount-percent-fill"></i>
-                                                            </span>
-                                                            Limited Time Offer: 5% off
-                                                        </li>
-                                                        <li>
-                                                            <span class="offer-icon">
-                                                                <i class="ri-discount-percent-fill"></i>
-                                                            </span>
-                                                            Limited Time Offer: 5% off
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+    
     <!-- Tab product end -->
 
 

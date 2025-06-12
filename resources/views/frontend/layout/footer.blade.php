@@ -52,14 +52,14 @@
                             </div>
                             <div class="footer-content">
                                 <ul>
-                                    <li><a class="text-content" href="index-2.html">Home</a></li>
-                                    <li><a class="text-content" href="collection.html">Collections</a>
+                                    <li><a class="text-content" href="{{url('/index')}}">Home</a></li>
+                                    {{-- <li><a class="text-content" href="collection.html">Collections</a>
+                                    </li> --}}
+                                    <li><a class="text-content" href="{{url('/about')}}">About Us</a>
                                     </li>
-                                    <li><a class="text-content" href="about-page.html">About Us</a>
-                                    </li>
-                                    <li><a class="text-content" href="blog(right-sidebar).html">Blogs</a></li>
-                                    <li><a class="text-content" href="offers.html">Offers</a></li>
-                                    <li><a class="text-content" href="search.html">Search</a></li>
+                                    {{-- <li><a class="text-content" href="blog(right-sidebar).html">Blogs</a></li>
+                                    <li><a class="text-content" href="offers.html">Offers</a></li> --}}
+                                    {{-- <li><a class="text-content" href="{{url('/search')}}">Search</a></li> --}}
                                 </ul>
                             </div>
                         </div>
@@ -76,11 +76,11 @@
                                     <li><a class="text-content" href="{{url('/ordertracking')}}">My
                                             Orders</a>
                                     </li>
-                                    <li><a class="text-content" href="order-tracking.html">Track
-                                            Order</a></li>
+                                    {{-- <li><a class="text-content" href="order-tracking.html">Track
+                                            Order</a></li> --}}
                                     <li><a class="text-content" href="{{url('/wishlist')}}">Wishlist</a>
                                     </li>
-                                    <li><a class="text-content" href="faq.html">Faq's</a></li>
+                                    <li><a class="text-content" href="{{url('/profile')}}">Profile</a></li>
                                     {{-- <li><a class="text-content" href="contact.html">Contact
                                             Us</a>
                                     </li> --}}
@@ -155,24 +155,30 @@
                     </button>
                 </div>
                 <div class="modal-body">
+                    <form action="" method="get">
+                    <div class="form group">
                     <div class="search-input-box">
-                        <input type="text" class="form-control" placeholder="Search with brands and categories...">
+                        <input type="search" class="form-control" name="search" placeholder="Search with product..." value="{{$search ?? '' }}">
+
                         <i class="ri-search-2-line"></i>
                     </div>
+                    <input type="submit" class="btn btn-solid" value="Search"name="submit"id="submit1">
+                </form>
+                </div>
 
                     <ul class="search-category">
                         <li class="category-title">Top search:</li>
                         <li>
-                            <a href="category-page.html">Baby Essentials</a>
+                            <a href={{url('/stationary')}}>Stationary</a>
                         </li>
                         <li>
-                            <a href="category-page.html">Bag Emporium</a>
+                            <a href="{{url('/colourfulpencil')}}">ColourfulPencil</a>
                         </li>
                         <li>
-                            <a href="category-page.html">Bags</a>
+                            <a href="{{url('/gelpens')}}">Pen</a>
                         </li>
                         <li>
-                            <a href="category-page.html">Books</a>
+                            <a href="{{url('/books')}}">Books</a>
                         </li>
                     </ul>
 
@@ -186,7 +192,7 @@
                                         <div class="img-wrapper">
                                             <div class="ribbon"><span>Exclusive</span></div>
                                             <a href="product-page(image-swatch).html">
-                                                <img src="../assets/images/fashion-1/product/1.jpg"
+                                                <img src="{{ asset('uploads/img2.jpg' ) }}"
                                                     class="img-fluid blur-up lazyloaded" alt="">
                                             </a>
                                             <div class="rating-label"><i class="ri-star-fill"></i><span>2.5</span>
@@ -211,8 +217,8 @@
                                         <div class="product-detail">
                                             <div>
                                                 <div class="brand-w-color">
-                                                    <a class="product-title" href="product-page(accordian).html">
-                                                        Glamour Gaze
+                                                    <a class="product-title" href="{{url('/stationary')}}">
+                                                    Statinary
                                                     </a>
                                                     <div class="color-panel">
                                                         <ul>
@@ -223,12 +229,12 @@
                                                         <span>+2</span>
                                                     </div>
                                                 </div>
-                                                <h6>Boyfriend Shirts</h6>
+                                                {{-- <h6>Boyfriend Shirts</h6>
                                                 <h4 class="price">$ 2.79<del> $3.00 </del><span
                                                         class="discounted-price"> 7%
                                                         Off
                                                     </span>
-                                                </h4>
+                                                </h4> --}}
                                             </div>
                                             <ul class="offer-panel">
                                                 <li>
@@ -253,8 +259,8 @@
                                 <div class="basic-product theme-product-1">
                                     <div class="overflow-hidden">
                                         <div class="img-wrapper">
-                                            <a href="product-page(accordian).html"><img
-                                                    src="../assets/images/fashion-1/product/11.jpg"
+                                            <a href="{{url('/colourfulpencil')}}"><img
+                                                    src="{{ asset('uploads/im4.jpg' ) }}"
                                                     class="img-fluid blur-up lazyloaded" alt=""></a>
                                             <div class="rating-label"><i class="ri-star-s-fill"></i>
                                                 <span>6.5</span>
@@ -280,15 +286,15 @@
                                             <div>
                                                 <div class="brand-w-color">
                                                     <a class="product-title" href="product-page(accordian).html">
-                                                        VogueVista
+                                                        Colourfulpencil
                                                     </a>
                                                 </div>
-                                                <h6>Chic Crop Top</h6>
-                                                <h4 class="price">$ 5.60<del> $6.80 </del><span
+                                                <h6>150</h6>
+                                                {{-- <h4 class="price"> 5.60<del> $6.80 </del><span
                                                         class="discounted-price"> 5%
                                                         Off
                                                     </span>
-                                                </h4>
+                                                </h4> --}}
                                             </div>
                                             <ul class="offer-panel">
                                                 <li><span class="offer-icon"><i
@@ -310,8 +316,8 @@
                                 <div class="basic-product theme-product-1">
                                     <div class="overflow-hidden">
                                         <div class="img-wrapper">
-                                            <a href="product-page(accordian).html"><img
-                                                    src="../assets/images/fashion-1/product/15.jpg"
+                                            <a href="{{url('/notebook')}}"><img
+                                                    src="{{ asset('uploads/im6.jpeg' ) }}"
                                                     class="img-fluid blur-up lazyloaded" alt=""></a>
                                             <div class="rating-label"><i class="ri-star-s-fill"></i>
                                                 <span>3.7</span>
@@ -337,11 +343,11 @@
                                             <div>
                                                 <div class="brand-w-color">
                                                     <a class="product-title" href="product-page(accordian).html">
-                                                        Urban Chic
+                                                        Notebook
                                                     </a>
                                                 </div>
-                                                <h6>Classic Jacket</h6>
-                                                <h4 class="price">$ 3.80 </h4>
+                                                <h6></h6>
+                                                {{-- <h4 class="price">$ 3.80 </h4> --}}
                                             </div>
                                             <ul class="offer-panel">
                                                 <li><span class="offer-icon"><i
@@ -363,8 +369,8 @@
                                 <div class="basic-product theme-product-1">
                                     <div class="overflow-hidden">
                                         <div class="img-wrapper">
-                                            <a href="product-page(image-swatch).html">
-                                                <img src="{{url('../assets/images/fashion-1/product/16.jpg')}}"
+                                            <a href="{{url('/crayons')}}">
+                                                <img src="{{ asset('uploads/crayons.jpg' ) }}"
                                                     class="img-fluid blur-up lazyloaded" alt="">
                                             </a>
                                             <div class="rating-label"><i class="ri-star-s-fill"></i>
@@ -391,12 +397,12 @@
                                             <div>
                                                 <div class="brand-w-color">
                                                     <a class="product-title" href="product-page(accordian).html">
-                                                        Couture Edge
+                                                      Crayons
                                                     </a>
                                                 </div>
-                                                <h6>Versatile Shacket</h6>
-                                                <h4 class="price"> $3.00
-                                                </h4>
+                                                <h6>   Crayons</h6>
+                                                {{-- <h4 class="price"> $3.00
+                                                </h4> --}}
                                             </div>
                                             <ul class="offer-panel">
                                                 <li><span class="offer-icon"><i
@@ -423,7 +429,7 @@
 <!-- Search Modal End -->
 <div class="offcanvas offcanvas-end cart-offcanvas" tabindex="-1" id="cartOffcanvas">
         <div class="offcanvas-header">
-            <h3 class="offcanvas-title">My Cart (3)</h3>
+            <h3 class="offcanvas-title">My Cart </h3>
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas">
                 <i class="ri-close-line"></i>
             </button>
@@ -440,23 +446,29 @@
 
             <div class="sidebar-title">
                 <a href="#!">Clear Cart</a>
+              
+
             </div>
 
             <div class="cart-media">
                 <ul class="cart-product">
+                    
                     <li>
                         <div class="media">
                             <a href="#!">
-                                
-                                <img src="../assets/images/fashion-1/product/5.jpg" class="img-fluid"
-                                    alt="Classic Jacket">
-                            </a>
+                                {{-- @if(isset($products) && file_exists(public_path('uploads/' . $products->file1)))
+                                <img src="{{ asset('uploads/' . $products->file1) }}" class="card-img-top" alt="{{ $products->product_name }}">
+
+                            @else
+                                <p>Image not found</p>
+                            @endif
+                          --}}
                             <div class="media-body">
                                 <a href="#!">
-                                    <h4>Couture Edge</h4>
+                                    <h4>Stationary</h4>
                                 </a>
                                 <h4 class="quantity">
-                                    <span>1 x $6.74</span>
+                                    <span>1 x 50.00</span>
                                 </h4>
 
                                 <div class="qty-box">
@@ -471,15 +483,19 @@
                                         </button>
                                     </div>
                                 </div>
-
+                               
                                 <div class="close-circle">
+                                   
                                     <button class="close_button edit-button" data-bs-toggle="modal"
                                         data-bs-target="#variationModal">
                                         <i class="ri-pencil-line"></i>
                                     </button>
-                                    <button class="close_button delete-button" type="submit">
+                                    {{-- @foreach($productDetail as $products) --}}
+                                    {{-- <a href="{{Route('deletecart',['id'=>$products->id])}}"title="Change Status" id="{{$products->id}}"class="delete_btn_ajax " data-toggle="tooltip"><span class="fas fa-trash material-icons" style="color:red;"></a><input type="hidden" class="delete_id_value " value='{{$products->id}}'> --}}
+                                    {{-- <button class="close_button delete-button" type="submit">
                                         <i class="ri-delete-bin-line"></i>
-                                    </button>
+                                    </button> --}}
+                                    {{-- @endforeach --}}
                                 </div>
                             </div>
                         </div>
@@ -487,24 +503,26 @@
                     <li>
                         <div class="media">
                             <a href="#!">
-                                @if(!empty($product) && $product->count())
-                                @foreach($product as $products)
+                                {{-- @if ($product && $product->count())
+                                @foreach ($product as $products)
                                     <div>
-                                        {{-- <img src="{{ asset('uploads/' . $products->file1) }}" alt=""
-                                            class="w-100 img-fluid blur-up lazyload"> --}}
-                                            <img src="{{ asset('uploads/' .$products->file1) }}" class="img-fluid"
-                                    alt="Classic Jacket">
+                                        <img src="{{ asset('uploads/' . $products->file1) }}" alt=""
+                                             class="w-100 img-fluid blur-up lazyload">
                                     </div>
                                 @endforeach
                             @else
                                 <p>No products found.</p>
                             @endif
+                             --}}
                                 
-                               
+                              
                                 <img src="{{ asset('uploads/pencil.jpg' ) }}" class="img-fluid"
                                     alt="Classic Jacket">
                             </a>
                             <div class="media-body">
+                                <a href="#!">
+                                    <h4>Pencil</h4>
+                                </a>
                                 {{-- @if(!empty($product) && $product->count()) --}}
                                 {{-- @foreach($product as $products)
                                 <a href="#!">
@@ -516,7 +534,7 @@
                             @endif --}}
                                 
                                 <h4 class="quantity">
-                                    <span>1 x $7.84</span>
+                                    <span>1 x 50.00</span>
                                 </h4>
                                 <div class="qty-box">
                                     <div class="input-group qty-container">
@@ -531,9 +549,10 @@
                                     </div>
                                 </div>
                                 <div class="close-circle">
-                                    <button class="close_button delete-button" type="submit">
+                                    {{-- <a href="{{Route('deletecart',['id'=>$products->id])}}"title="Change Status" id="{{$products->id}}"class="delete_btn_ajax " data-toggle="tooltip"><span class="fas fa-trash material-icons" style="color:red;"></a><input type="hidden" class="delete_id_value " value='{{$products->id}}'> --}}
+                                    {{-- <button class="close_button delete-button" type="submit">
                                         <i class="ri-delete-bin-line"></i>
-                                    </button>
+                                    </button> --}}
                                 </div>
                             </div>
                         </div>
@@ -541,15 +560,16 @@
                     <li>
                         <div class="media">
                             <a href="#!">
-                                <img src="{{url('../assets/images/fashion-1/product/12.jpg')}}" class="img-fluid"
-                                    alt="Classic Jacket">
+                                <img src="{{ asset('uploads/img9.jpeg' ) }}" class="img-fluid"
+                                alt="Classic Jacket">
+                        </a>
                             </a>
                             <div class="media-body">
                                 <a href="#!">
-                                    <h4>Urban Chic</h4>
+                                    <h4>Colourful pencil</h4>
                                 </a>
                                 <h4 class="quantity">
-                                    <span>2 x $3.84</span>
+                                    <span>2 x 50.00</span>
                                 </h4>
                                 <div class="qty-box">
                                     <div class="input-group qty-container">
@@ -563,11 +583,12 @@
                                         </button>
                                     </div>
                                 </div>
+                                
                                 <div class="close-circle">
-                                    <button class="close_button delete-button" type="submit">
+                                    {{-- <button class="close_button delete-button" type="submit">
                                         <i class="ri-delete-bin-line"></i>
-                                    </button>
-                                </div>
+                                    </button> --}}
+                                    
                             </div>
                         </div>
                     </li>
@@ -576,13 +597,13 @@
                 <ul class="cart_total">
                     <li>
                         <div class="total">
-                            <h5>Sub Total : <span>$36.74</span>
+                            <h5>Sub Total : <span>150</span>
                             </h5>
                         </div>
                     </li>
                     <li>
                         <div class="buttons">
-                            <a href="{{url('/productDetail')}}" class="btn view-cart">View Cart</a>
+                            <a href="{{url('/cart1')}}" class="btn view-cart">View Cart</a>
                             <a href="{{url('/checkout')}}" class="btn checkout">Check Out</a>
                         </div>
                     </li>
@@ -633,11 +654,12 @@
                             </div>
                         </div>
                         <div class="product-buttons">
-                            <button class="btn btn-animation btn-solid hover-solid scroll-button"
+                            {{-- <a href="{{ route('update', ['id' => $product->id]) }}">
+                                <button class="btn btn-animation btn-solid hover-solid scroll-button"
                                 id="replacecartbtnVariation14" type="submit" data-bs-dismiss="modal">
                                 <i class="ri-shopping-cart-line me-1"></i>
                                 Update Item
-                            </button>
+                            </button> --}}
                         </div>
                     </div>
                 </div>
@@ -1344,6 +1366,8 @@
 
     <!-- Bootstrap Notification js-->
     <script src="{{url('../assets/js/bootstrap-notify.min.js')}}"></script>
+    <script src="https://cdn.datatables.net/1.11.4/js/dataTables.bootstrap5.min.js"></script>
+
 
     <!-- Theme js-->
     <script src="{{url('../assets/js/theme-setting.js')}}"></script>
@@ -1431,7 +1455,7 @@
                     
     //         var url = "{{ route('deleteproduct', ':id') }}".replace(':id', deleteid);
                     // var url = "{{route('deleteproduct', ':id')  }}";
-                    var url = "{{ route('deleteproduct', ':id') }}".replace(':id', deleteid);
+                    var url = "{{ route('deletecart', ':id') }}".replace(':id', deleteid);
                     var table_row = $(this).closest('tr');
                     swal.fire({
                         title: 'Are you Sure?',
@@ -1467,6 +1491,22 @@
                     })
                     });
                 });    
+           
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
            
     </script>
     

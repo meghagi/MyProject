@@ -9,9 +9,18 @@
             <h2>Notebook</h2>
             <nav class="theme-breadcrumb">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="index-2.html">Home</a></li>
-                    <li class="breadcrumb-item">Product</li>
-                    <li class="breadcrumb-item active">Notebook</li>
+                    <ol class="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li ><a href="https://vidhyasagarfoundation.intouchsoftwaresolution.com/">vidhyasagarfoundation.intouchsoftwaresolution.com</a></li>
+        
+                            {{-- <li class="breadcrumb-item"><a href="index-2.html">Home</a></li>
+                            <li class="breadcrumb-item">Product</li> --}}
+                            <li class="breadcrumb-item active">
+                                {{-- @foreach($product as $products)
+                                        <p>{{$products->product_name}}</p>
+                                        @endforeach --}}
+                            </li>
+                        </ol> 
                 </ol>
             </nav>
         </div>

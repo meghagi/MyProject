@@ -52,4 +52,28 @@ class LoginController extends Controller
         // return redirect()->intended('/dashboard');
         return redirect()->intended('/dashboard1');
 }
+// protected function authenticated($request, $user)
+// {
+//     // If the user has both roles (admin and user), redirect to the index page
+//     if ($user->isAdmin() || $user->isuser()) {
+//         return redirect()->intended('/index/{id?}');
+//     }
+
+//    }
+//    protected function authenticated1($request, $user)
+// {  
+//    // If the user is only an admin, redirect to the admin dashboard
+//     if ($user->isAdmin()) {
+//         return redirect()->intended('/admindashboard');
+//     }
+
+//     // If the user is only a user, redirect to the user dashboard
+//     if ($user->isuser()) {
+//         return redirect()->intended('/dashboard1');
+//     }
+
+//     // Default fallback
+//     return redirect()->intended('/index');
+// }
+
 }

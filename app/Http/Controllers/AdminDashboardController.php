@@ -9,7 +9,9 @@ use App\Models\User;
 use App\Models\Orderitem;
 use App\Models\orderstock;
 use App\Models\Stationary;
-use Illuminate\Support\Facades\Log;  // Import the Log facade
+use Illuminate\Support\Facades\Log; 
+ // Import the Log facade
+ use \Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use DataTables;
 class AdminDashboardController extends Controller
@@ -26,20 +28,20 @@ public function index1($id=null)
 {
   
   {
-      // $products = Products::all(); // Retrieve all products from the Products model
-      // return view('frontend.index', compact('products')); // Pass $products to the view
+      $products = Products::all(); // Retrieve all products from the Products model
+      return view('frontend.index', compact('products')); // Pass $products to the view
   
 
-    if ($id) {
-        // Fetch a specific product by ID
-        $products = Products::where('id', $id)->get();
-    } else {
-        // Fetch all products
-        $products = Products::all();
-    }
+//     if ($id) {
+        
+//         $products = Products::where('id', $id)->get();
+//     } else {
+//         // Fetch all products
+//         $products = Products::all();
+//     }
     
-    return view('frontend.index', compact('products'));
-}
+//    return view('frontend.index', compact('products'));
+ }
 
   }
   
@@ -48,8 +50,8 @@ public function index3()
 {
   // $product= Products::get() ;
   echo $id;
-  $product = Products::find($id);
-  // $data=compact('product');
+  $products = Products::all();
+   $data=compact('products');
   // return view('frontend.manageproduct')->with($data);
 
   return view('frontend.index')->with($data);;
@@ -544,22 +546,38 @@ dd("No product found for ID: $id or image does not match.");
 
  }
 
- public function stationary() 
- {
-  // $product = \DB::table('products')->get();
-  //  return view('frontend.product-page(4-image)',compact('product'));
-  $products = \DB::table('products')->get();
-$stationary= \DB::table('stationary')->get();
+//  public function stationary() 
+//  {
+//   $id1=4;
+ 
+//   $products = \DB::table('products')->get();
+// $stationary= \DB::table('stationary')->get();
 
 
-if (!$stationary) {
-    dd("No product found with file1 .");
+// if (!$stationary) {
+//     dd("No product found with file1 .");
+// }
+
+// return view('frontend.stationary', compact('stationary','products'));
+
+//  }
+ public function stationary()
+{
+    // Retrieve products from the database
+    $products = \DB::table('products')->get();
+    
+    // Retrieve the stationary item based on the given ID
+    // $stationary = \DB::table('stationary')->where('id', $id)->first();
+
+    // Check if the stationary item exists
+    if (!$stationary) {
+        abort(404, "Stationary product not found."); // Handle the error gracefully
+    }
+
+    // Return the view with the stationary item and products
+    return view('frontend.stationary', compact('products'));
 }
-// $product->file1 = json_decode($product->file1);
-// Access product properties like this:
-return view('frontend.stationary', compact('stationary','products'));
 
- }
  public function uploadMultipleImages()
  {
   return view('frontend.formuploadeimage');
@@ -619,8 +637,9 @@ return view('frontend.stationary', compact('stationary','products'));
  public function productpageaccordian($id) 
 {
     // Retrieve the product from the database using the given ID
-     $id1=5;
-    $product = \DB::table('products')->where('id', $id, $id1)->get();
+    // $url=url('/pencil','/books','/notebook','/rubber','/stationary')."/" .$id;
+    
+    $product = \DB::table('products')->where('id', $id)->get();
 
     // Check if the product exists
     if (!$product) {
@@ -637,7 +656,7 @@ return view('frontend.stationary', compact('stationary','products'));
    return view('frontend.product-page(bundle)');
  }
 
- public function productpageimageswatch() 
+ public function gelpens() 
  {
   $id=6;
     $product = \DB::table('products')->where('id', $id)->get();
@@ -651,7 +670,7 @@ return view('frontend.stationary', compact('stationary','products'));
    // return view('frontend.product-page(accordian)', compact('product'));
    //return view('frontend.product-page(image-outside)', compact('product','orderstock'));
 
-   return view('frontend.product-page(image-swatch)',compact('product'));
+   return view('frontend.gelpens',compact('product'));
  }
 
  public function rubber() 
@@ -698,6 +717,40 @@ return view('frontend.stationary', compact('stationary','products'));
       abort(404, "Product not found.");
   }
    return view('frontend.shoppner',compact('product'));
+ }
+ public function crayons() 
+ {
+  $id1=9;
+  $product = \DB::table('products')->where('id',  $id1)->get();
+
+  // Check if the product exists
+  if (!$product) {
+      abort(404, "Product not found.");
+  }
+   return view('frontend.crayons',compact('product'));
+
+ }
+ public function stationary1() 
+ {
+  $id1=4;
+  $products  = \DB::table('products')->where('id',  $id1)->get();
+
+  // Check if the product exists
+  if (! $products) {
+      abort(404, "Product not found.");
+  }
+   return view('frontend.stationary',compact('products'));
+ }
+ public function stationary2() 
+ {
+  $id1=4;
+  $products5  = \DB::table('products')->where('id',  $id1)->get();
+
+  // Check if the product exists
+  if (! $products5) {
+      abort(404, "Product not found.");
+  }
+   return view('frontend.index',compact('products5'));
  }
  public function pencil() 
  {
@@ -759,7 +812,8 @@ return view('frontend.stationary', compact('stationary','products'));
  }
  public function search() 
  {
-   return view('frontend.search');
+  $product = \DB::table('products')->where('id', $id)->first();
+   return view('frontend.layout.footer', compact($product));
  }
  public function sales() 
  {
@@ -911,6 +965,12 @@ return redirect()->back()->with('success', ' Successfully Saved!!');
  }
  public function manageproduct(Request $request)
  {
+  // $search = $request->input('search', '');
+  // if( $search=="")
+  // {
+  //   $product=Products::where('product_name','LIKE',"%$search")->get();
+  // }
+  // else{
    $product= Products::get() ;
    // echo"<pre>";
    // print_r($product->toArray());
@@ -923,7 +983,7 @@ return redirect()->back()->with('success', ' Successfully Saved!!');
      // Remove this line after debugging
 
      
-     return Datatables::of($data)
+     return Datatables::of($data)//$data mei $product
          ->addIndexColumn()
          ->addColumn('action', function ($row) {
              $btn = '<a href="javascript:void(0)" class="btn btn-primary btn-sm">View</a>';
@@ -939,7 +999,8 @@ return redirect()->back()->with('success', ' Successfully Saved!!');
          }
 $data=compact('product');
    return view('frontend.manageproduct')->with($data);
- }
+ 
+}
  public function managecustomer(Request $request)
  {
    $customer= Customer::get() ;
@@ -1332,12 +1393,12 @@ public function edituser($id)
        return view('frontend.updateuser')->with($data);
   }
 }
-public function update($id , Request $request)
-{
-  $customers = Customer::find($id);
+// public function update($id , Request $request)
+// {
+//   $customers = Customer::find($id);
   
-  return view("frontend.updatecustomer", compact('customers'));
-}
+//   return view("frontend.updatecustomer", compact('customers'));
+// }
 
 public function update1($id , Request $request)
 {
@@ -1407,7 +1468,11 @@ $customers->contactnumber=$request['contactnumber'];
 $customers->DOB=$request['DOB'];
 $customers->gender=$request['gender'];
 $customers->save();
-}
+return redirect()->route('managecustomer')->with('success', 'Customer updated successfully!');
+    } 
+// return redirect()->back()->with('success', ' Successfully update!!');
+    
+
 
 public function updatedata2($id , Request $request)
 {
@@ -1501,6 +1566,14 @@ $user->save();
 //    }
 // }
 public function read($id , Request $request)
+{
+  $product = \DB::table('products')->where('id', $id)->first();
+
+ // $product= Products::find($id);
+  
+  return view("frontend.read", compact('product'));
+}
+public function search1($id , Request $request)
 {
   $product = \DB::table('products')->where('id', $id)->first();
 
@@ -1635,7 +1708,7 @@ public function deleteCategory($id)
       // Check if the product exists.
       if (!is_null($category)) {
         //Log::info('Product Found:', ['product' => $product]);
-        $customer->delete(); // Delete the product.
+        $category->delete(); // Delete the product.
           return redirect()->back()->with('success', 'Category deleted successfully.');
       }
       // Log if the product was not found.
@@ -1716,5 +1789,34 @@ public function categorystore(Request $request)
     $orderstock->payment_status=$request['payment_status'];
     $orderstock->save();
   }
+
+
+
+//   public function show($id)
+// {
+//   $products= \DB::table('products')->where('id', $id)->first();
+//   $products = Products::findOrFail($id); 
+//     // dd($products);
+// // Or use slug if required
+//     return view('frontend.index', compact('products'));
+// }
+
+public function show($id, $name)
+{
+    // Fetch the product by ID
+    $product = \DB::table('products')->where('id', $id)->first();
+
+    if (!$product) {
+        abort(404, "Product not found.");
+    }
+
+    // Optionally validate the name
+    if (Str::slug($product->product_name) !== $name) {
+        abort(404, "Product name mismatch.");
+    }
+
+    // Return the product details view
+    return view('frontend.product-details', compact('product'));
+}
 
 }

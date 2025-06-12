@@ -40,13 +40,28 @@
     <link rel="stylesheet" type="text/css" href="{{url('../assets/css/vendors/animate.css')}}">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" type="text/css" href="{{url('../assets/css/vendors/bootstrap.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('../assets/css/vendors/bootstrap.css')}}">
 
     <!-- Theme CSS -->
     <link rel="stylesheet" type="text/css" href="{{url('../assets/css/style.css')}}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css" />
+  <link rel="stylesheet" href="https://cdn.datatables.net/buttons/3.2.0/css/buttons.dataTables.min.css"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+
 </head>
 
-
+<script>
+    $(document).ready(function() {
+        $('.home-slider').slick({
+            slidesToShow: 3,
+            slidesToScroll: 1,
+            autoplay: true,
+            autoplaySpeed: 2000,
+            dots: true,
+        });
+    });
+</script>
 
 
 
@@ -75,13 +90,58 @@
                         <ul class="header-dropdown">
                             <li class="mobile-wishlist"><a href="{{url('/wishlist')}}"><i class="ri-heart-fill"></i></a>
                             </li>
-                            <li class="onhover-dropdown mobile-account"> <i class="ri-user-fill"></i>
+                            <li class="onhover-dropdown">
+                                <div class="cart-media name-usr">
+                                    @auth
+                                        <span>{{ Auth::user()->name }}</span>
+                                    @endauth
+                                    <i data-feather="user"></i>
+                                </div>
+                            </li>
+
+                            {{-- <li class="onhover-dropdown mobile-account"> <i class="ri-user-fill"></i>
                                 My Account
                                 <ul class="onhover-show-div">
                                     <li><a href="{{ route('login') }}">Login</a></li>
                                     <li><a href="{{ route('register') }}">register</a></li>
                                 </ul>
+                            </li> --}}
+                            <li class="onhover-dropdown mobile-account">
+                                <i class="ri-user-fill"></i> My Account
+                                <ul class="onhover-show-div">
+                                    @if (Route::has('login'))
+                                        @auth
+                                            @if (Auth::user()->role === "admin")
+                                                <li>
+                                                    <a href="{{ route('admindashboard') }}">Admin Dashboard</a>
+                                                </li>
+                                            @else
+                                                <li>
+                                                    <a href="{{ route('userdashboard1') }}">Dashboard</a>
+                                                </li>
+                                            @endif
+                                            <li>
+                                                <a class="dropdown-item" href="{{ route('logout') }}"
+                                                   onclick="event.preventDefault();
+                                                             document.getElementById('logout-form').submit();">
+                                                    {{ __('Logout') }}
+                                                </a>
+                                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                                    @csrf
+                                                </form>
+                                            </li>
+                                        @else
+                                            <li>
+                                                <a href="{{ route('login') }}">Login</a>
+                                            </li>
+                                            <li>
+                                                <a href="{{ route('register') }}">Register</a>
+                                            </li>
+                                        @endauth
+                                    @endif
+                                </ul>
                             </li>
+                    
                         </ul>
                     </div>
                 </div>
@@ -281,9 +341,9 @@
                                         <li class="mobile-box">
                                             <div class="mobile-back text-end">Menu<i class="ri-close-line"></i></div>
                                         </li>
-                                        <li><a href="">Home</a></li>
+                                        <li><a href="{{url('/index')}}">Home</a></li>
                                         <li class="mega hover-cls">
-                                            <a href="#!">feature <div class="lable-nav">new</div></a>
+                                            <a href="{{url('/about')}}">About <div class="lable-nav">new</div></a>
                                             <ul class="mega-menu full-mega-menu">
                                                 <li>
                                                     <div class="container">
@@ -405,7 +465,7 @@
                                                                         </ul>
                                                                     </div>
                                                                     <div class="menu-title">
-                                                                        <h5>search</h5>
+                                                                        <h5>search heare</h5>
                                                                     </div>
                                                                     <div class="menu-content">
                                                                         <ul>
@@ -473,7 +533,7 @@
                                             </ul>
                                         </li>
                                         <li>
-                                            <a href="#!">shop</a>
+                                            <a href="{{url('/gelpens')}}">Gelpens</a>
                                             <ul>
                                                 <li>
                                                     <a href="{{url('frontend/category-page(vegetables).php')}}">tab style<span
@@ -524,7 +584,7 @@
                                             </ul>
                                         </li>
                                         <li class="mega hover-cls">
-                                            <a href="{{url('/product')}}">product</a>
+                                            {{-- <a href="{{url('/cart1')}}">cart</a> --}}
                                             <ul class="mega-menu full-mega-menu">
                                                 <li>
                                                     <div class="container">
@@ -558,7 +618,7 @@
                                                                             <li>
                                                                                 
                                                                                 <a href="{{url('frontend/product-page(sticky).php')}}">Product
-                                                                                    href="product-page(vertical-tab).html">Product
+                                                                                    
                                                                                     Vertical Tab</a>
                                                                             </li>
                                                                         </ul>
@@ -752,9 +812,10 @@
                                                 </li>
                                             </ul>
                                         </li>
-                                        
                                         <li>
-                                            <a href="#!">Pages</a>
+                                            <a href="{{url('/pencil')}}">Pencils</a></li>
+                                        <li>
+                                            {{-- <a href="#">Pages</a>
                                             <ul>
                                                 <li>
                                                     <a href="{{ url('/admindashboard') }}">Vendor</a>
@@ -766,7 +827,7 @@
                                                 </li>
                                             </ul>
                                         </li>
-                                        
+                                         --}}
                                                {{--<li>
                                                     <a href="#!">account</a>
                                                     <ul>
@@ -865,12 +926,17 @@
                                                 </ul>
                                             </div>
                                         </li>
+                                        @isset($cart)
+
                                         <li class="onhover-div mobile-cart">
                                             <div data-bs-toggle="offcanvas" data-bs-target="#cartOffcanvas">
                                                 <i class="ri-shopping-cart-line"></i>
                                             </div>
-                                            <span class="cart_qty_cls">2</span>
+                                           
+                                            <span class="cart_qty_cls">{{ $cart->id }}</span>
                                         </li>
+                                        @endisset
+
                                     </ul>
                                 </div>
                             </div>

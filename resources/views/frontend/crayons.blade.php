@@ -14,15 +14,18 @@
             </h2>
             <nav class="theme-breadcrumb">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="index-2.html">Home</a></li>
-                    <li class="breadcrumb-item">Product</li>
-                    <li class="breadcrumb-item active">
-                        @foreach($product as $products)
-                                <p>{{$products->product_name}}</p>
-                                @endforeach
-                    </li>
-                </ol>
-            </nav>
+                    <ol class="breadcrumb">
+                        <li ><a href="https://vidhyasagarfoundation.intouchsoftwaresolution.com/">vidhyasagarfoundation.intouchsoftwaresolution.com</a></li>
+    
+                        {{-- <li class="breadcrumb-item"><a href="index-2.html">Home</a></li>
+                        <li class="breadcrumb-item">Product</li> --}}
+                        <li class="breadcrumb-item active">
+                            @foreach($product as $products)
+                                    <p>{{$products->product_name}}</p>
+                                    @endforeach
+                        </li>
+                    </ol>
+                  </nav>
         </div>
     </div>
     <!-- breadcrumb End -->
@@ -91,7 +94,10 @@
                                 <a href="#!">20 Reviews</a>
                             </div>
                             <div class="price-text">
-                                <h3><span class="fw-normal">MRP:</span> $ 2.79
+                                <h3><span class="fw-normal">MRP:</span> ₹ 
+                                    @foreach($product as $products)
+                                    <p>{{$products->price}}</p>
+                                    @endforeach
                                     <del> $
                                         3.00 </del><span class="discounted-price"> 7% Off </span>
                                 </h3>

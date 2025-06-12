@@ -10,9 +10,11 @@
             <nav class="theme-breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item">
-                        <a href="index-2.html">Home</a>
+                        {{-- <a href="index-2.html">Home</a> --}}
+                        <li ><a href="https://vidhyasagarfoundation.intouchsoftwaresolution.com/">vidhyasagarfoundation.intouchsoftwaresolution.com</a></li>
+
                     </li>
-                    <li class="breadcrumb-item active">Dashboard</li>
+                    {{-- <li class="breadcrumb-item active">Dashboard</li> --}}
                 </ol>
             </nav>
         </div>
@@ -34,7 +36,7 @@
                                 <div class="profile-image">
                                     <div class="position-relative">
                                         <div class="user-round">
-                                            <h4>J</h4>
+                                            <h4>A</h4>
                                         </div>
                                         <div class="user-icon"><input type="file" accept="image/*"><i
                                                 class="ri-image-edit-line d-lg-block d-none"></i><i
@@ -43,8 +45,8 @@
                                 </div>
                             </div>
                             <div class="profile-detail">
-                                <h5>John Due</h5>
-                                <h6>john.customer@example.com</h6>
+                                <h5>{{Auth::user()->name}}</h5>
+                                <h6>{{Auth::user()->email}}</h6>
                             </div>
                         </div>
                         <div class="faq-tab">
@@ -70,14 +72,7 @@ Add Product
     </button></a>
 
 </li>
-<li role="presentation" class="nav-item">
-                                <a href="{{url('/update/{id}')}}"> <button class="nav-link" id="bank-details-tab" data-bs-toggle="tab"
-        data-bs-target="#bank-details-tab-pane" type="button" role="tab">
-        <i class="fa-solid fa-cart-shopping"></i>
-Update product
-    </button></a>
 
-</li>
 <li role="presentation" class="nav-item">
 <a href="{{url('/manageproduct')}}"> <button class="nav-link" id="manage-product-tab" data-bs-toggle="tab"
         data-bs-target="#manage-product-tab-pane" type="button" role="tab">

@@ -10,7 +10,8 @@
             <nav class="theme-breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item">
-                        <a href="">Home</a>
+                        <li ><a href="https://vidhyasagarfoundation.intouchsoftwaresolution.com/">vidhyasagarfoundation.intouchsoftwaresolution.com</a></li>
+
                     </li>
                     <li class="breadcrumb-item active">Wishlist</li>
                 </ol>
@@ -74,12 +75,15 @@
                             {{$wishlists->quantity}}
                             </td>
                             <td>
-                                <div class="icon-box d-flex gap-2 justify-content-center">
+                                {{-- <div class="icon-box d-flex gap-2 justify-content-center">
                                     <a href="#!" class="icon me-1">
                                         <i class="ri-close-line"></i>
                                     </a>
-                                    <a href="#!" class="cart">
-                                        <i class="ri-shopping-cart-line"></i>
+                                </div> --}}
+                                    <div class="icon-box d-flex gap-2 justify-content-center">
+                                    {{-- <a href="#!" class="cart"> --}}
+                                        <a href="{{Route('deleteproduct', ['id'=>$wishlists->id])}}"  style="color:red;">
+                                            <i class="ri-close-line"></i>
                                     </a>
                                 </div>
                             </td>
@@ -168,7 +172,7 @@
                 </table>
             </div>
             <div class="wishlist-buttons">
-                <a href="{{url('/addwishlist')}}" class="btn btn-solid">continue shopping</a>
+                <a href="{{url('/index')}}" class="btn btn-solid">continue shopping</a>
                 <a href="{{url('/checkout')}}" class="btn btn-solid">check out</a>
             </div>
         </div>

@@ -1,3 +1,45 @@
+<style>
+    /* Mobile-specific adjustments */
+@media (max-width: 768px) {
+    .cart-table {
+        font-size: 14px;
+    }
+
+    .cart-table img {
+        width: 70px; /* Resize product images */
+        height: auto;
+    }
+
+    .cart-table .table-head {
+        display: none; /* Hide table headers on small screens */
+    }
+
+    .cart-table tbody tr {
+        display: block; /* Stack rows for better readability */
+        margin-bottom: 15px;
+        border: 1px solid #ddd;
+        padding: 10px;
+    }
+
+    .cart-table td {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 8px;
+    }
+
+    .cart-buttons {
+        flex-direction: column;
+    }
+
+    .cart-buttons .btn {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+}
+
+    </style>
+
+
 
     <!-- header end -->
 
@@ -10,7 +52,8 @@
             <nav class="theme-breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item">
-                        <a href="index-2.html">Home</a>
+                        <li ><a href="https://vidhyasagarfoundation.intouchsoftwaresolution.com/">vidhyasagarfoundation.intouchsoftwaresolution.com</a></li>
+
                     </li>
                     <li class="breadcrumb-item active">Cart</li>
                 </ol>
@@ -29,7 +72,7 @@
                 </div>
                 <a href="checkout.html" class="cart_checkout btn btn-solid btn-xs">check out</a>
             </div> -->
-            <div class="table-responsive">
+             <div class="table-responsive">
                 <table class="table cart-table">
                     <thead>
                         <tr class="table-head">
@@ -42,209 +85,28 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($cart as $product)
+                        {{-- @foreach($cart as $product) --}}
                         <tr>
-                            {{-- <td>
-                                <a href="product-page(accordian).html">
-                                    <img src="{{ asset('uploads/' . $product->file1) }}" width="50px">
-                                </a>
-                            </td> --}}
-                            <td>
-                                <a href="product-page(accordian).html">
+                            <td data-label="ID">{{$cart->id}}</td>
+                            <td data-label="Product ID">{{$cart->productid}}</td>
+                            <td data-label="Price">{{$cart->price}}</td>
+                            <td data-label="Quantity">
+                                <input type="number" class="form-control" value="{{$cart->quantity}}" min="1">
+                            </td>
+                            <td data-label="Action">
+                                <a href="{{Route('cart',['id'=>$cart->id])}}"title="Change Status" id="{{$cart->id}}"class="delete_btn_ajax " data-toggle="tooltip"><span class="fas fa-trash material-icons" style="color:red;"></a><input type="hidden" class="delete_id_value " value='{{$cart->id}}'>
 
-                                    {{$product->id}}
-                                </a>
-                                <div class="mobile-cart-content row">
-                                    <div class="col">
-                                        <div class="qty-box">
-                                            <div class="input-group qty-container">
-                                                <button class="btn qty-btn-minus">
-                                                    <i class="ri-arrow-left-s-line"></i>
-                                                </button>
-                                                <input type="number" readonly="" name="qty"
-                                                    class="form-control input-qty" value="1">
-                                                <button class="btn qty-btn-plus">
-                                                    <i class="ri-arrow-right-s-line"></i>
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col table-price">
-                                        <h2 class="td-color">{{$product->productid}}</h2>
-                                    </div>
-                                    <div class="col">
-                                        <h2 class="td-color">
-                                            <a href="product-page(accordian).html" class="icon remove-btn">
-                                                <i class="ri-close-line"></i>
-                                            </a>
-                                        </h2>
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="table-price">
-                                <h2>{{$product->price}}</h2>
-                            </td>
-                            <td>
-                                <h2>{{$product->quantity}}</h2>
-                                {{-- <div class="qty-box"> <h2>{{$product->quantity}}</h2>
-                                    <div class="input-group qty-container">
-                                        <button class="btn qty-btn-minus">
-                                            <i class="ri-arrow-left-s-line"></i>
-                                        </button>
-                                        <input type="number" readonly="" name="qty" class="form-control input-qty"
-                                            value="1">
-                                        <button class="btn qty-btn-plus">
-                                            <i class="ri-arrow-right-s-line"></i>
-                                        </button>
-                                    </div> --}}
-                                </div>
-                            </td>
-                            <td>
-                                <h2 class="td-color">{{$product->price}}</h2>
-                            </td>
-                            <td>
-                                <a href="{{Route('deleteproduct',['id'=>$product->id])}}"title="Change Status" id="{{$product->id}}"class="delete_btn_ajax icon remove-btn" data-toggle="tooltip"><span class="fas fa-trash material-icons" style="color:red;"></a><input type="hidden" class="delete_id_value " value='{{$product->id}}'>
-                                {{-- <a href="#!" class="icon remove-btn"> --}}
-                                    <i class="ri-close-line"></i>
                                 </a>
                             </td>
                         </tr>
-                        
+                        {{-- @endforeach --}}
                     </tbody>
-                    {{-- <tbody>
-                        <tr>
-                            <td>
-                                <a href="product-page(accordian).html">
-                                    <img src="../assets/images/fashion-1/product/18.jpg" class="img-fluid" alt="">
-                                </a>
-                            </td>
-                            <td><a href="product-page(accordian).html">Tan Cargo Shorts</a>
-                                <div class="mobile-cart-content row">
-                                    <div class="col">
-                                        <div class="qty-box">
-                                            <div class="input-group qty-container">
-                                                <button class="btn qty-btn-minus">
-                                                    <i class="ri-arrow-left-s-line"></i>
-                                                </button>
-                                                <input type="number" readonly="" name="qty"
-                                                    class="form-control input-qty" value="3">
-                                                <button class="btn qty-btn-plus">
-                                                    <i class="ri-arrow-right-s-line"></i>
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col table-price">
-                                        <h2 class="td-color">$9.96 <del>$12.00</del></h2>
-                                    </div>
-                                    <div class="col">
-                                        <h2 class="td-color">
-                                            <a href="#!" class="icon remove-btn">
-                                                <i class="ri-close-line"></i>
-                                            </a>
-                                        </h2>
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="table-price">
-                                <h2>$9.96 <del>$12.00</del></h2>
-                                <h6 class="theme-color">You Save : $2.04</h6>
-                            </td>
-                            <td>
-                                <div class="qty-box">
-                                    <div class="input-group qty-container">
-                                        <button class="btn qty-btn-minus">
-                                            <i class="ri-arrow-left-s-line"></i>
-                                        </button>
-                                        <input type="number" readonly="" name="qty" class="form-control input-qty"
-                                            value="3">
-                                        <button class="btn qty-btn-plus">
-                                            <i class="ri-arrow-right-s-line"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>
-                                <h2 class="td-color">$29.88</h2>
-                            </td>
-                            <td>
-                                <a href="#!" class="icon remove-btn">
-                                    <i class="ri-close-line"></i>
-                                </a>
-                            </td>
-                        </tr>
-                    </tbody>
-                    <tbody> --}}
-                        {{-- <tr>
-                            <td>
-                                <a href="product-page(accordian).html">
-                                    <img src="../assets/images/product-details/product/17.jpg" class="img-fluid" alt="">
-                                </a>
-                            </td>
-                            <td><a href="product-page(accordian).html">Gym Coords Set (Brown)</a>
-                                <div class="mobile-cart-content row">
-                                    <div class="col">
-                                        <div class="qty-box">
-                                            <div class="input-group qty-container">
-                                                <button class="btn qty-btn-minus">
-                                                    <i class="ri-arrow-left-s-line"></i>
-                                                </button>
-                                                <input type="number" readonly="" name="qty"
-                                                    class="form-control input-qty" value="1">
-                                                <button class="btn qty-btn-plus">
-                                                    <i class="ri-arrow-right-s-line"></i>
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col table-price">
-                                        <h2 class="td-color">$63.00</h2>
-                                    </div>
-                                    <div class="col">
-                                        <h2 class="td-color">
-                                            <a href="#!" class="icon remove-btn">
-                                                <i class="ri-close-line"></i>
-                                            </a>
-                                        </h2>
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="table-price">
-                                <h2>$20.00</h2>
-                            </td>
-                            <td>
-                                <div class="qty-box">
-                                    <div class="input-group qty-container">
-                                        <button class="btn qty-btn-minus">
-                                            <i class="ri-arrow-left-s-line"></i>
-                                        </button>
-                                        <input type="number" readonly="" name="qty" class="form-control input-qty"
-                                            value="1">
-                                        <button class="btn qty-btn-plus">
-                                            <i class="ri-arrow-right-s-line"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>
-                                <h2 class="td-color">$20.00</h2>
-                            </td>
-                            <td>
-                                <a href="#!" class="icon remove-btn">
-                                    <i class="ri-close-line"></i>
-                                </a>
-                            </td>
-                        </tr>
-                    </tbody>
-                    <tfoot> --}}
-                        
-                    @endforeach
                 </table>
             </div>
-
+            
             <div class="row cart-buttons">
                 <div class="col-6">
-                    <a href="{{url('/product')}}" class="btn btn-solid text-capitalize">continue
+                    <a href="{{url('/index')}}" class="btn btn-solid text-capitalize">continue
                         shopping</a>
                 </div>
                 <div class="col-6">

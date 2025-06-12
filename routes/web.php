@@ -200,21 +200,24 @@ Route::get('/product-page(3-col-left)',[AdminDashboardController::class,'product
 Route::get('/product-page(3-col-right)',[AdminDashboardController::class,'productpage3colright)'])->name('product-page(3-col-right)');
 Route::get('/product-page(3-column)',[AdminDashboardController::class,'productpage3column'])->name('product-page(3-column)');
 Route::get('/stationary',[AdminDashboardController::class,'stationary'])->name('stationary');
+Route::get('/stationary',[AdminDashboardController::class,'stationary1'])->name('stationary1');
+Route::get('/stationary2',[AdminDashboardController::class,'stationary2'])->name('stationary2');
 Route::post('/upload-multiple-images1',[AdminDashboardController::class,'uploadmultipleimages1'])->name('upload-multiple-images1)');
 Route::get('/upload-multiple-images',[AdminDashboardController::class,'uploadmultipleimages'])->name('upload-multiple-images)');
+Route::get('/product/{id}/{name}', [AdminDashboardController::class, 'show'])->name('product.show');
 
 
-
-Route::get('/product-page(accordian)/{id?}',[AdminDashboardController::class,'productpageaccordian'])->name('product-page(accordian)');
+Route::get('/product-page(accordian)/{id?}/{name?}',[AdminDashboardController::class,'productpageaccordian'])->name('product-page(accordian)');
 Route::get('/product-page(bundle)',[AdminDashboardController::class,'productpagebundle'])->name('product-page(bundle)');
 Route::get('/rubber',[AdminDashboardController::class,'rubber'])->name('rubber');
-Route::get('/product-page(image-swatch)',[AdminDashboardController::class,'productpageimageswatch'])->name('product-page(imageswatch)');
+Route::get('/gelpens',[AdminDashboardController::class,'gelpens'])->name('gelpens');
 Route::get('/product-page(left-image)',[AdminDashboardController::class,'productpageleftimage'])->name('product-page(leftimage)');
 Route::get('/product-page(left-sidebar)',[AdminDashboardController::class,'productpageleftsidebar'])->name('product-page(leftsidebar)');
 Route::get('/product-page(no-sidebar)',[AdminDashboardController::class,'productpagenosidebar'])->name('product-page(nosidebar)');
 Route::get('/product-page(right-image)',[AdminDashboardController::class,'productpagerightimage'])->name('product-page(rightimage)');
 Route::get('/product-page(right-sidebar)',[AdminDashboardController::class,'productpagerightsidebar'])->name('product-page(rightsidebar)');
 Route::get('/shoppner',[AdminDashboardController::class,'shoppner'])->name('shoppner');
+Route::get('/crayons',[AdminDashboardController::class,'crayons'])->name('crayons');
 Route::get('/pencil',[AdminDashboardController::class,'pencil'])->name('pencil');
 Route::get('/colourfulpencil',[AdminDashboardController::class,'colourfulpencil'])->name('colourfulpencil');
 Route::get('/notebook',[AdminDashboardController::class,'notebook'])->name('notebook');
@@ -255,19 +258,32 @@ Route::get('/customer',[AdminDashboardController::class,'customer'])->name('cust
 Route::post('/customerstore',[AdminDashboardController::class,'customerstore'])->name('customerstore');
 
 
-
+Route::get('/users',[UserDashboardController::class,'users'])->name('users');
 
 Route::get('/addtocart',[UserDashboardController::class,'addtocart'])->name('addtocart');
-Route::get('/cart',[UserDashboardController::class,'cart'])->name('cart');
+
+Route::get('/addtocart1/{id}',[UserDashboardController::class,'addtocart1'])->name('addtocart1');
+
+Route::get('/cart/{id}',[UserDashboardController::class,'cart'])->name('cart');
 Route::get('/Mycart',[UserDashboardController::class,'Mycart'])->name('Mycart');
 Route::post('/addtocartstore',[UserDashboardController::class,'addtocartstore'])->name('addtocartstore');
+
+Route::get('/cart1',[UserDashboardController::class,'cart1'])->name('cart1');
 Route::get('/wishlist',[UserDashboardController::class,'wishlist'])->name('wishlist');
 Route::get('/addwishlist',[UserDashboardController::class,'addwishlist'])->name('addwishlist');
 Route::post('/wishliststore',[UserDashboardController::class,'wishliststore'])->name('wishliststore');
 Route::get('/productDetail',[UserDashboardController::class,'ProductDetail'])->name('ProductDetail');
 Route::get('/ordertracking',[UserDashboardController::class,'ordertracking'])->name('ordertracking');
 Route::get('/checkout',[UserDashboardController::class,'checkout'])->name('checkout');
+Route::get('/continueshopping',[UserDashboardController::class,'continueshopping'])->name('continueshopping');
+
 Route::post('/continueshopping1',[UserDashboardController::class,'continueshopping1'])->name('continueshopping1');
+Route::get('/delete-cart/{id}', [UserDashboardController::class, 'destroy1'])->name('deletecart');
+Route::get('/clear-cart/{id}', [UserDashboardController::class, 'clearcart'])->name('clearcart');
+Route::get('cartadd/{id}',[UserDashboardController::class,'cartadd'])->name('cartadd');
+Route::get('edit/{id}',[UserDashboardController::class,'edit'])->name('edit');
+Route::get('/update/{id}',[UserDashboardController::class,'update'])->name('update');
+Route::post('/updatedata/{id}',[AdminDashboardController::class,'updatedata'])->name('updatedata');
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

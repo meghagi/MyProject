@@ -9,10 +9,17 @@
             <h2>Stationary</h2>
             <nav class="theme-breadcrumb">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="{{url('/product-page(4-image)')}}">Home</a></li>
-                    <li class="breadcrumb-item">Product</li>
-                    <li class="breadcrumb-item active">Stationary Item</li>
+                    <li ><a href="https://vidhyasagarfoundation.intouchsoftwaresolution.com/">vidhyasagarfoundation.intouchsoftwaresolution.com</a></li>
+
+                    {{-- <li class="breadcrumb-item"><a href="index-2.html">Home</a></li>
+                    <li class="breadcrumb-item">Product</li> --}}
+                    <li class="breadcrumb-item active">
+                        {{-- @foreach($product as $products)
+                                <p>{{$products->product_name}}</p>
+                                @endforeach --}}
+                    </li>
                 </ol>
+           
             </nav>
         </div>
     </div>
@@ -70,16 +77,24 @@
                                 <span class="divider">|</span>
                                 <a href="#!">20 Reviews</a>
                             </div>
-                            {{-- <div class="price-text">
-                                <h3><span class="fw-normal">MRP:</span> $ 2.79
+                            <div class="price-text">
+                                
+                                    <h3><span class="fw-normal">MRP:</span> ₹ 
+                                        @foreach ($products as $product)
+                                {{ $product->price }}
+                                        @endforeach
                                     <del> $
                                         3.00 </del><span class="discounted-price"> 7% Off </span>
                                 </h3>
                                 <span>Inclusive all the text</span>
-                            </div> --}}
-                            @foreach ($stationary as $stationary1)
+                            </div>
+                              @foreach ($products as $product)
                             <p class="description-text">
-                                {{ $stationary1->description }}
+                                @foreach ($products as $product)
+                                {{ $product->description }}
+                                pencil is a versatile writing and drawing tool made of a slender core of graphite encased in wood or other materials like plastic or metal
+
+                                @endforeach
                             </p>
                         {{-- @else
                             <p>No product found.</p> --}}
@@ -133,8 +148,30 @@
                             </div>
                             <div class="product-buttons">
                                 <div class="d-flex align-items-center gap-3">
-                                    <a href="{{url('/addtocart')}}"> <button class="btn btn-animation btn-solid hover-solid scroll-button"
-                                        type="button"><i class="ri-shopping-cart-line me-1"></i> Add To Cart</button></a>
+                                    {{-- <form action="{{url('/addtocart1')}}" method="post">
+                                        @csrf
+                                        @foreach ($products as $product)
+                                        <input type="hidden"name="productid" value="{{ $product->id }}">
+                                
+                                        <button class="btn btn-animation btn-solid hover-solid scroll-button"
+                                        type="submit"><i class="ri-shopping-cart-line me-1"></i> Add To Cart</button>
+                                  
+                                    @endforeach 
+                                    </form> --}}
+                                    <a href="{{url('/addtocart')}}"> 
+                                        <button class="btn btn-animation btn-solid hover-solid scroll-button"
+                                        type="button"><i class="ri-shopping-cart-line me-1"></i> Add To Cart</button>
+                                    </a>
+                                   
+                                    {{-- <a href="{{url('/addtocart1')}}"> 
+                                        <button class="btn btn-animation btn-solid hover-solid scroll-button"
+                                        type="button"><i class="ri-shopping-cart-line me-1"></i> Add To Cart</button>
+                                    </a> --}}
+                                   
+
+                
+
+
                                     <a href="{{url('/checkout')}}" class="btn btn-solid buy-button">Buy Now</a>
                                 </div>
                             </div>
@@ -227,9 +264,9 @@
                             aria-labelledby="top-home-tab">
                             <div class="product-tab-description">
                                 <div class="part">
-                                    @foreach ($stationary as $stationary1)
+                                    @foreach ($products as $product)
                                     <p class="description-text">
-                                        {{ $stationary1->description }}
+                                        {{$product->description }}
                                     </p>
                                 {{-- @else
                                     <p>No product found.</p> --}}
@@ -939,8 +976,133 @@
                 </div>
             </div>--}} 
     </section>
+    @endsection
     <!-- related products -->
-@endsection
+    <script>
+    $(document).ready(function() {
+
+        $(".add-to-cart-btn").click(function() {
+            var productId = $(this).data("product-id");
+
+            $.ajax({
+                url: "/cart/add/" + productId, // Replace with your actual route
+                type: "GET",
+                dataType: "json",
+                success: function(response) {
+                    if (response.success) {
+                        // Show success message or notification
+                        window.location.reload();
+                        if(response.alert){
+                            alert("Product added to cart!");
+                        }
+                    } else {
+                        // Handle error message if there's an issue
+                        alert("Error adding product: " + response.message);
+                    }
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    // Handle server errors
+                    console.error("AJAX error:", textStatus, errorThrown);
+                }
+            });
+        });
+
+        $(".remove-from-cart-btn").click(function() {
+            var productId = $(this).data("product-id");
+
+            $.ajax({
+                url: "/cart/remove/" + productId, // Replace with your actual route
+                type: "GET",
+                dataType: "json",
+                success: function(response) {
+                    if (response.success) {
+                        // Update cart items count dynamically
+                        window.location.reload();
+                    } else {
+                        // Handle error message if there's an issue
+                        alert("Error removing product: " + response.message);
+                    }
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    // Handle server errors
+                    console.error("AJAX error:", textStatus, errorThrown);
+                }
+            });
+        });
+
+        $(".minus-to-cart-btn").click(function() {
+            var productId = $(this).data("product-id");
+
+            $.ajax({
+                url: "/cart/minus/" + productId, // Replace with your actual route
+                type: "GET",
+                dataType: "json",
+                success: function(response) {
+                    if (response.success) {
+                        // Show success message or notification
+                        window.location.reload();
+                    } else {
+                        // Handle error message if there's an issue
+                        alert("Error removing product: " + response.message);
+                    }
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    // Handle server errors
+                    console.error("AJAX error:", textStatus, errorThrown);
+                }
+            });
+        });
+
+        $(".add-to-wishlist-btn").click(function() {
+            var productId = $(this).data("product-id");
+
+            $.ajax({
+                url: "/wishlist/add/" + productId, // Replace with your actual route
+                type: "GET",
+                dataType: "json",
+                success: function(response) {
+                    if (response.success) {
+                        // Show success message or notification
+                        window.location.reload();
+                        // alert("Product added to wishlist!");
+                    } else {
+                        // Handle error message if there's an issue
+                        alert("Error adding product: " + response.message);
+                    }
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    // Handle server errors
+                    console.error("AJAX error:", textStatus, errorThrown);
+                }
+            });
+        });
+
+        $(".remove-to-wishlist-btn").click(function() {
+            var productId = $(this).data("product-id");
+
+            $.ajax({
+                url: "/wishlist/remove/" + productId, // Replace with your actual route
+                type: "GET",
+                dataType: "json",
+                success: function(response) {
+                    if (response.success) {
+                        // Update cart items count dynamically
+                        window.location.reload();
+                    } else {
+                        // Handle error message if there's an issue
+                        alert("Error removing product: " + response.message);
+                    }
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    // Handle server errors
+                    console.error("AJAX error:", textStatus, errorThrown);
+                }
+            });
+        });
+
+    });
+</script>
+
 
     <!-- Footer Section Start -->
     

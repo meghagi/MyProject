@@ -10,7 +10,8 @@
             <nav class="theme-breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item">
-                        <a href="">Home</a>
+                        <li ><a href="https://vidhyasagarfoundation.intouchsoftwaresolution.com/">vidhyasagarfoundation.intouchsoftwaresolution.com</a></li>
+
                     </li>
                     <li class="breadcrumb-item active">Order Tracking</li>
                 </ol>
@@ -33,6 +34,7 @@
                             <th>billing_date</th>
                             <th>order_status</th>
                             <th>payment_status</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -75,12 +77,11 @@
                             </td>
                             <td>
                                 <div class="icon-box d-flex gap-2 justify-content-center">
-                                    <a href="#!" class="icon me-1">
+                                    <a href="{{Route('deleteproduct', ['id'=>$orderstocks->id])}}"  style="color:red;">
                                         <i class="ri-close-line"></i>
-                                    </a>
-                                    <a href="#!" class="cart">
+                                    {{-- <a href="#!" class="cart">
                                         <i class="ri-shopping-cart-line"></i>
-                                    </a>
+                                    </a> --}}
                                 </div>
                             </td>
                         </tr>

@@ -8,10 +8,10 @@
         <div class="container">
             <h2>Eraser</h2>
             <nav class="theme-breadcrumb">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="index-2.html">Home</a></li>
-                    <li class="breadcrumb-item">Product</li>
-                    <li class="breadcrumb-item active">Eraser</li>
+                <ol class="breadcrumb">                  
+                      <li ><a href="https://vidhyasagarfoundation.intouchsoftwaresolution.com/">vidhyasagarfoundation.intouchsoftwaresolution.com</a></li>
+
+
                 </ol>
             </nav>
         </div>
@@ -63,7 +63,10 @@
                                 <a href="#!">20 Reviews</a>
                             </div>
                             <div class="price-text">
-                                <h3><span class="fw-normal">MRP:</span> $ 32.79
+                                <h3><span class="fw-normal">MRP:</span> ₹
+                                    @foreach($product as $products)
+                                    <p>{{$products->price}}</p>
+                                    @endforeach
                                     <del> $
                                         45.00 </del><span class="discounted-price"> 7% Off </span>
                                 </h3>

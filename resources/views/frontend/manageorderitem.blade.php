@@ -10,9 +10,11 @@
             <nav class="theme-breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item">
-                        <a href="index-2.html">Home</a>
+                        {{-- <a href="index-2.html">Home</a> --}}
+                        <li ><a href="https://vidhyasagarfoundation.intouchsoftwaresolution.com/">vidhyasagarfoundation.intouchsoftwaresolution.com</a></li>
+
                     </li>
-                    <li class="breadcrumb-item active">Dashboard</li>
+                    {{-- <li class="breadcrumb-item active">Dashboard</li> --}}
                 </ol>
             </nav>
         </div>
@@ -34,7 +36,7 @@
                                 <div class="profile-image">
                                     <div class="position-relative">
                                         <div class="user-round">
-                                            <h4>J</h4>
+                                            <h4>A</h4>
                                         </div>
                                         <div class="user-icon"><input type="file" accept="image/*"><i
                                                 class="ri-image-edit-line d-lg-block d-none"></i><i
@@ -43,8 +45,8 @@
                                 </div>
                             </div>
                             <div class="profile-detail">
-                                <h5>John Due</h5>
-                                <h6>john.customer@example.com</h6>
+                                <h5>{{Auth::user()->name}} </h5>
+                                <h6>{{Auth::user()->email}} </h6>
                             </div>
                         </div>
                         <div class="faq-tab">
@@ -70,14 +72,14 @@ Add Product
     </button></a>
 
 </li>
-<li role="presentation" class="nav-item">
+{{-- <li role="presentation" class="nav-item">
                                 <a href="{{url('/update/{id}')}}"> <button class="nav-link" id="bank-details-tab" data-bs-toggle="tab"
         data-bs-target="#bank-details-tab-pane" type="button" role="tab">
         <i class="fa-solid fa-cart-shopping"></i>
 Update product
     </button></a>
 
-</li>
+</li> --}}
 <li role="presentation" class="nav-item">
 <a href="{{url('/manageproduct')}}"> <button class="nav-link" id="manage-product-tab" data-bs-toggle="tab"
         data-bs-target="#manage-product-tab-pane" type="button" role="tab">
@@ -213,7 +215,7 @@ Manage Product
                         <div class="tab-pane fade show active" id="info-tab-pane" role="tabpanel">
                             <div class="counter-section">
                                 <div class="welcome-msg">
-                                    <h4>Hello, MARK JECNO !</h4>
+                                    <h4>Hello , {{Auth::user()->name}}  !</h4>
                                     <p>From your My Account Dashboard you have the ability to view a snapshot of your
                                         recent account activity and update your account information. Select a link below
                                         to view or edit information.</p>
@@ -256,14 +258,13 @@ Manage Product
                                             <div class="box">
                                                 <ul class="box-content">
                                                     <li class="w-100">
-                                                        <h6>Full Name: John Due</h6>
+                                                        <h6>Full Name: {{Auth::user()->name}} </h6>
                                                     </li>
                                                     <li class="w-100">
-                                                        <h6>Phone: +1 65558845</h6>
+                                                        <h6>Phone: {{Auth::user()->phonenumber}} </h6>
                                                     </li>
                                                     <li class="w-100">
-                                                        <h6>Address: 26, Starts Hollow
-                                                            Colony Denver, Colorado, United States 80014</h6>
+                                                        <h6>Address: {{Auth::user()->adderess}} </h6>
                                                     </li>
                                                 </ul>
                                             </div>
@@ -275,7 +276,7 @@ Manage Product
                                         </div>
                                         <div class="row">
                                             <div class="col-sm-6">
-                                                <h6>Email : john.customer@example.com</h6><a href="#edit-profile"
+                                                <h6>Email : {{Auth::user()->email}} </h6><a href="#edit-profile"
                                                     data-bs-toggle="modal">Edit</a>
                                             </div>
                                             <div class="col-sm-6">
