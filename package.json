@@ -1,5 +1,6 @@
 {
     "private": true,
+<<<<<<< HEAD
     "scripts": {
         "dev": "npm run development",
         "development": "mix",
@@ -18,5 +19,19 @@
         "postcss": "^8.1.14",
         "sass": "^1.32.11",
         "sass-loader": "^11.0.1"
+=======
+    "type": "module",
+    "scripts": {
+        "dev": "vite",
+        "build": "vite build"
+    },
+    "devDependencies": {
+        "@popperjs/core": "^2.11.6",
+        "axios": "^1.7.4",
+        "bootstrap": "^5.2.3",
+        "laravel-vite-plugin": "^1.0",
+        "sass": "^1.56.1",
+        "vite": "^5.0"
+>>>>>>> 63f35f401765865da358c29be9c30da814386e9a
     }
 }

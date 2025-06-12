@@ -3,10 +3,14 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+<<<<<<< HEAD
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
 
+=======
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
+>>>>>>> 63f35f401765865da358c29be9c30da814386e9a
 
 class LoginController extends Controller
 {
@@ -27,6 +31,7 @@ class LoginController extends Controller
      * Where to redirect users after login.
      *
      * @var string
+<<<<<<< HEAD
   
      */
 //     public function authenticate()
@@ -56,11 +61,22 @@ class LoginController extends Controller
    protected $redirectTo = '/dashboard';
  
   protected $redirectTo1 = '/admindashboard';
+=======
+     */
+    protected $redirectTo = '/home';
+    protected $redirectTo1 = '/dashboard';
+ 
+  protected $redirectTo2 = '/admindashboard';
+  protected $redirectTo3 = '/dashboard1';
+ 
+
+>>>>>>> 63f35f401765865da358c29be9c30da814386e9a
     /**
      * Create a new controller instance.
      *
      * @return void
      */
+<<<<<<< HEAD
 
 
     // protected $redirectTo = '/'; // Default redirect path
@@ -77,6 +93,12 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+=======
+    public function __construct()
+    {
+        $this->middleware('guest')->except('logout');
+        $this->middleware('auth')->only('logout');
+>>>>>>> 63f35f401765865da358c29be9c30da814386e9a
     }
     protected function authenticated($request, $user)
     {
@@ -85,8 +107,39 @@ class LoginController extends Controller
             return redirect()->intended('/admindashboard');
         }
 
+<<<<<<< HEAD
         return redirect()->intended('/dashboard');
     }
 }
    
 
+=======
+        // return redirect()->intended('/dashboard');
+        return redirect()->intended('/dashboard1');
+}
+// protected function authenticated($request, $user)
+// {
+//     // If the user has both roles (admin and user), redirect to the index page
+//     if ($user->isAdmin() || $user->isuser()) {
+//         return redirect()->intended('/index/{id?}');
+//     }
+
+//    }
+//    protected function authenticated1($request, $user)
+// {  
+//    // If the user is only an admin, redirect to the admin dashboard
+//     if ($user->isAdmin()) {
+//         return redirect()->intended('/admindashboard');
+//     }
+
+//     // If the user is only a user, redirect to the user dashboard
+//     if ($user->isuser()) {
+//         return redirect()->intended('/dashboard1');
+//     }
+
+//     // Default fallback
+//     return redirect()->intended('/index');
+// }
+
+}
+>>>>>>> 63f35f401765865da358c29be9c30da814386e9a
